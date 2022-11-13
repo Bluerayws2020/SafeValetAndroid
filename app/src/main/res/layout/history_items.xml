@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/product_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardElevation="5dp">
+
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Date"
+        android:orientation="vertical"
+        android:layout_marginStart="30dp"
+        />
+
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="75dp"
+        android:src="@drawable/hisellipse" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/rounded_box"
+        android:backgroundTint="@color/shadow_color_text"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        >
+
+
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="75dp"
+            android:src="@drawable/vector" />
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/img" />
+
+        <TextView
+            android:id="@+id/clientId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:text="@string/ahmad_zuhair" />
+
+
+        <TextView
+            android:id="@+id/starTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="60dp"
+            android:text="@string/time"
+            android:textColor="@color/blue"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="130dp"
+        android:text="@string/completed"
+        android:textColor="@color/blue"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="130dp"
+        android:text="---------------------"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="130dp"
+        android:text="@string/Date"
+        android:textColor="@color/instruction"
+        android:textSize="12sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp">
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="150dp"
+            android:src="@drawable/img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="160dp"
+            android:text="@string/ahmad_zuhair" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="160dp"
+            android:text="@string/time"
+            android:textColor="@color/blue" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="220dp"
+        android:text="------------------------------------------------------------------------------------"
+        android:textColor="@color/silver"
+        android:textSize="12sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="240dp"
+        android:text="@string/swefieh_village"
+        android:textColor="@color/silver"
+        android:textSize="12sp" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="240dp"
+        android:text="@string/my_car_35_98634"
+        android:textColor="@color/silver"
+        android:textSize="12sp" />
+
+
+
+</RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_alignParentTop="true"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="70dp"
+            android:contentDescription="@string/upload"
+            android:src="@drawable/vectorsmartobject"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill_vertical"
+
+            android:layout_marginTop="200dp"
+            android:background="@drawable/custom_shape"
+            android:backgroundTint="@color/blue"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/let_s_get_you_started"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textColorHint="@color/shadow_color_text"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_your_first_car"
+                android:textColor="@color/white"
+                android:textColorHint="@color/shadow_color_text"
+                android:textSize="14sp" />
+
+
+            <soup.neumorphism.NeumorphCardView
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:neumorph_shadowElevation="4dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:neumorph_shadowColorLight="@color/border"
+                app:neumorph_shadowColorDark="@color/border"
+                app:neumorph_backgroundColor="@color/gray"
+                app:neumorph_shapeType="pressed">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+
+                    <EditText
+                        android:id="@+id/nickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:autofillHints=""
+                        android:textAlignment="textStart"
+                        android:hint="@string/nick_name"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        app:neumorph_shadowElevation="6dp"
+                        app:neumorph_shadowColorLight="@color/border"
+                        app:neumorph_shadowColorDark="@color/border"
+                        android:padding="14dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/shadow_color_text" />
+                </LinearLayout>
+
+            </soup.neumorphism.NeumorphCardView>
+
+
+            <soup.neumorphism.NeumorphCardView
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:neumorph_shadowElevation="4dp"
+                app:neumorph_shadowColorLight="@color/border"
+                app:neumorph_shadowColorDark="@color/border"
+                app:neumorph_backgroundColor="@color/gray"
+                app:neumorph_shapeType="pressed">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+
+                    <EditText
+                        android:id="@+id/carMake"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:autofillHints=""
+                        android:textAlignment="textStart"
+                        android:hint="@string/car_make"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        app:neumorph_shadowElevation="6dp"
+                        app:neumorph_shadowColorLight="@color/border"
+                        app:neumorph_shadowColorDark="@color/border"
+                        android:padding="14dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/shadow_color_text" />
+                </LinearLayout>
+
+            </soup.neumorphism.NeumorphCardView>
+
+
+            <soup.neumorphism.NeumorphCardView
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:neumorph_shadowElevation="4dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:neumorph_shadowColorLight="@color/border"
+                app:neumorph_shadowColorDark="@color/border"
+                app:neumorph_backgroundColor="@color/gray"
+                app:neumorph_shapeType="pressed">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+
+                    <EditText
+                        android:id="@+id/carModel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:autofillHints=""
+                        android:textAlignment="textStart"
+                        android:hint="@string/car_model"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        app:neumorph_shadowElevation="6dp"
+                        app:neumorph_shadowColorLight="@color/border"
+                        app:neumorph_shadowColorDark="@color/border"
+                        android:padding="14dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/shadow_color_text" />
+                </LinearLayout>
+
+            </soup.neumorphism.NeumorphCardView>
+
+
+
+            <soup.neumorphism.NeumorphCardView
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:neumorph_shadowElevation="4dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:neumorph_shadowColorLight="@color/border"
+                app:neumorph_shadowColorDark="@color/border"
+                app:neumorph_backgroundColor="@color/gray"
+                app:neumorph_shapeType="pressed">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+
+                    <EditText
+                        android:id="@+id/year"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:autofillHints=""
+                        android:textAlignment="textStart"
+                        android:hint="@string/year"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        app:neumorph_shadowElevation="6dp"
+                        app:neumorph_shadowColorLight="@color/border"
+                        app:neumorph_shadowColorDark="@color/border"
+                        android:padding="14dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/shadow_color_text" />
+                </LinearLayout>
+
+            </soup.neumorphism.NeumorphCardView>
+
+
+
+
+            <soup.neumorphism.NeumorphCardView
+                style="@style/Widget.Neumorph.Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:neumorph_shadowElevation="4dp"
+                app:neumorph_shadowColorLight="@color/border"
+                app:neumorph_shadowColorDark="@color/border"
+                app:neumorph_backgroundColor="@color/gray"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:neumorph_shapeType="pressed">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+
+                    <EditText
+                        android:id="@+id/plateNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:autofillHints=""
+                        android:textAlignment="textStart"
+                        android:hint="@string/plate_no"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        app:neumorph_shadowElevation="6dp"
+                        app:neumorph_shadowColorLight="@color/border"
+                        app:neumorph_shadowColorDark="@color/border"
+                        android:padding="14dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/shadow_color_text" />
+                </LinearLayout>
+
+            </soup.neumorphism.NeumorphCardView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/car_registration_plate"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textColorHint="@color/shadow_color_text"
+                android:textSize="14sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/jordanian"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:buttonTint="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/foreign"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:buttonTint="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </LinearLayout>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/updatebtn"
+                style="@style/Widget.Neumorph.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="45dp"
+                android:layout_marginEnd="45dp"
+                android:background="@drawable/rounded_btn"
+                app:neumorph_shadowColorLight="@color/border"
+                app:neumorph_shadowColorDark="@color/border"
+                android:textColor="@color/signupBtnTxt"
+                app:neumorph_backgroundColor="@color/gray"
+                app:neumorph_strokeColor="@color/blue"
+                android:text="@string/save"
+                android:elevation="0dp"
+                app:neumorph_shapeType="pressed"/>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--            <com.google.android.material.button.MaterialButton-->
+    <!--                android:id="@+id/updatebtn"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginBottom="20dp"-->
+    <!--                android:layout_marginStart="45dp"-->
+    <!--                android:layout_marginEnd="45dp"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                app:strokeColor="@color/black"-->
+    <!--                android:elevation="10dp"-->
+    <!--                android:background="@drawable/rounded_btn"-->
+    <!--                android:text="@string/save"-->
+    <!--                android:textColor="@color/signupBtnTxt"-->
+    <!--                android:textSize="16sp"-->
+    <!--                app:neumorph_shadowElevation="2dp" />-->
+    <!--&lt;!&ndash;            </soup.neumorphism.NeumorphCardView>&ndash;&gt;-->
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.core.widget.NestedScrollView-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:fitsSystemWindows="true"-->
+<!--    android:layout_alignParentTop="true"-->
+<!--    android:fillViewport="true">-->
+
+<!--<RelativeLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    android:layout_gravity="center"-->
+<!--    android:gravity="center"-->
+<!--    android:layout_height="wrap_content">-->
+
+
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="120dp"-->
+<!--        android:layout_marginTop="70dp"-->
+<!--        android:contentDescription="@string/upload"-->
+<!--        android:src="@drawable/vectorsmartobject"/>-->
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="fill_vertical"-->
+<!--        android:layout_marginTop="200dp"-->
+<!--        android:background="@drawable/custom_shape"-->
+<!--        android:backgroundTint="@color/blue"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="vertical">-->
+
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:text="@string/let_s_get_you_started"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textColorHint="@color/shadow_color_text"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/add_your_first_car"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textColorHint="@color/shadow_color_text"-->
+<!--            android:textSize="14sp" />-->
+
+
+<!--        <EditText-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:autofillHints=""-->
+<!--            android:background="@drawable/bookbtns"-->
+<!--            android:hint="@string/nick_name"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:padding="14dp"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textColorHint="@color/shadow_color_text"-->
+<!--            android:textSize="12sp" />-->
+
+
+<!--        <EditText-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:autofillHints=""-->
+<!--            android:background="@drawable/bookbtns"-->
+<!--            android:hint="@string/car_make"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:padding="14dp"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textColorHint="@color/shadow_color_text"-->
+<!--            android:textSize="12sp" />-->
+
+
+<!--        <EditText-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:autofillHints=""-->
+<!--            android:background="@drawable/bookbtns"-->
+<!--            android:hint="@string/car_model"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:padding="14dp"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textColorHint="@color/shadow_color_text"-->
+<!--            android:textSize="12sp" />-->
+
+
+<!--        <EditText-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:autofillHints=""-->
+<!--            android:background="@drawable/bookbtns"-->
+<!--            android:hint="@string/year"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:padding="14dp"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textColorHint="@color/shadow_color_text"-->
+<!--            android:textSize="12sp" />-->
+
+
+<!--        <EditText-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:autofillHints=""-->
+<!--            android:background="@drawable/bookbtns"-->
+<!--            android:hint="@string/plate_no"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:padding="14dp"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textColorHint="@color/shadow_color_text"-->
+<!--            android:textSize="12sp" />-->
+
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginEnd="50dp"-->
+<!--            android:text="@string/car_registration_plate"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textColorHint="@color/shadow_color_text"-->
+<!--            android:textSize="14sp" />-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/checkBox1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/jordanian"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="14sp"-->
+<!--                app:buttonTint="@color/white"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/checkBox2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/foreign"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="14sp"-->
+<!--                app:buttonTint="@color/white"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+
+<!--        </LinearLayout>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/updatebtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:background="@drawable/roundedbtns"-->
+<!--            android:padding="18dp"-->
+<!--            android:text="@string/save"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/blue"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--    </LinearLayout>-->
+
+<!--</RelativeLayout>-->
+<!--</androidx.core.widget.NestedScrollView>-->
