@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.safevalet.fragments.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_showMyCarFragment"
+            app:destination="@id/showMyCarFragment" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_callBackMyCarFragment"
+            app:destination="@id/callBackMyCar" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_exchangeCarFragment"
+            app:destination="@id/exchangeCarFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mapFragment"
+            app:destination="@id/mapsFragment" />
+
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/showMyCarFragment"
+        android:name="com.example.safevalet.fragments.ShowMyCarFragment"
+        android:label="@string/home"
+        tools:layout="@layout/meet_driver">
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/callBackMyCar"
+        android:name="com.example.safevalet.fragments.CallBackMyCarFragment"
+        android:label="@string/call_back_my_car"
+        tools:layout="@layout/fragment_call_back_mycar">
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/exchangeCarFragment"
+        android:name="com.example.safevalet.fragments.MyCarFragment"
+        android:label="@string/MyCar"
+        tools:layout="@layout/my_cars">
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.safevalet.fragments.ProfileFragment"
+        android:label="@string/profileFragment"
+        tools:layout="@layout/user_profile">
+    </fragment>
+
+    <fragment
+        android:id="@+id/myCarFragment"
+        android:name="com.example.safevalet.fragments.MyCarFragment"
+        android:label="@string/MyCar"
+        tools:layout="@layout/my_cars">
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.safevalet.fragments.HistoryFragment"
+        android:label="@string/histoty"
+        tools:layout="@layout/history">
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.example.safevalet.fragments.LanguageFragment"
+        android:label="@string/language"
+        tools:layout="@layout/language">
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.safevalet.fragments.MapsFragment"
+        android:label="Maps Fragment"
+        tools:layout="@layout/fragment_map">
+    </fragment>
+
+
+</navigation>

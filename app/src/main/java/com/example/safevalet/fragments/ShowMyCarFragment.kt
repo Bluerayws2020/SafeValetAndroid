@@ -1,0 +1,64 @@
+package com.example.safevalet.fragments
+
+import android.os.Bundle
+import android.view.*
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.example.safevalet.R
+import com.example.safevalet.databinding.MeetDriverBinding
+import com.example.safevalet.helpers.HelperUtils
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.WriterException
+import com.journeyapps.barcodescanner.BarcodeEncoder
+
+
+class ShowMyCarFragment: BaseFragment<MeetDriverBinding>(), View.OnClickListener {
+
+
+    private var navController: NavController? = null
+    private val userID by lazy { HelperUtils.getUID(applicationContext())}
+
+
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): MeetDriverBinding {
+        return MeetDriverBinding.inflate(inflater, container, false)
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        navController = Navigation.findNavController(view)
+
+
+        //initializing MultiFormatWriter for QR code
+        val mWriter = MultiFormatWriter()
+        try {
+            //BitMatrix class to encode entered text and set Width & Height
+            val mMatrix =
+                mWriter.encode(userID, BarcodeFormat.QR_CODE, 400, 400)
+            val mEncoder = BarcodeEncoder()
+            val mBitmap =
+                mEncoder.createBitmap(mMatrix) //creating bitmap of code
+            binding.QRImg.setImageBitmap(mBitmap) //Setting generated QR code to imageView
+
+        } catch (e: WriterException) {
+            e.printStackTrace()
+        }
+
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.QRImg -> {
+            }
+
+
+        }
+    }
+}
