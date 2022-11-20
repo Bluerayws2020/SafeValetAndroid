@@ -2,38 +2,44 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/product_card"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginTop="100dp"
     android:clickable="true"
     android:focusable="true"
-    android:backgroundTint="@color/white"
+    android:layout_gravity="center"
     app:cardElevation="5dp">
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="380dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:background="@drawable/boxmap"
+        android:backgroundTint="@color/gray"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        >
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/rounded_box"
-            android:backgroundTint="@color/gray"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+
             >
 
             <ImageView
                 android:id="@+id/driverImg"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/img"
                 android:contentDescription="" />
 
@@ -42,14 +48,13 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/gray"
             android:orientation="vertical"
+            android:layout_marginStart="30dp"
             >
 
             <TextView
                 android:id="@+id/driverName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="50dp"
                 android:text="@string/ahmad_zuhair"
                 android:textSize="16dp"
                 android:textStyle="bold"
@@ -58,8 +63,6 @@
                 android:id="@+id/driverJob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="3dp"
                 android:text="Valet Captin" />
 
 
@@ -69,8 +72,7 @@
                 android:id="@+id/driverMobile"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="70dp"
-                android:layout_marginTop="55dp"
+                android:layout_marginStart="30dp"
                 android:src="@drawable/phonecall"
                 android:contentDescription="" />
 
@@ -78,33 +80,35 @@
         </LinearLayout>
 
 
-        <TextView
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginTop="150dp"
-            android:text="-------------------------------------------------------------------"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:src="@drawable/historyline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="110dp"
+            />
 
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="20dp"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal"
-            >
+            android:layout_marginTop="130dp"
+            android:gravity="start"
 
+            >
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="140dp"
+                android:layout_marginStart="20dp"
                 android:src="@drawable/mapcar" />
 
             <LinearLayout
@@ -112,14 +116,12 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/gray"
                 android:orientation="vertical"
+                android:layout_marginStart="30dp"
                 >
-
                 <TextView
                     android:id="@+id/carName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="140dp"
                     android:text="@string/my_car"
                     android:textSize="16dp"
                     android:textStyle="bold"
@@ -128,28 +130,27 @@
                     android:id="@+id/carStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="3dp"
                     android:text="@string/car_parked"
                     android:textColor="@color/blue"
                     />
 
-
             </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/estimatedTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginTop="160dp"
-                android:text="@string/_3_min"
-                android:textColor="@color/shadow_color_text" />
+            <ImageView
+                android:id="@+id/carImg"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="80dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/camera" />
+
 
         </LinearLayout>
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

@@ -45,6 +45,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     private val CustomerStatusThreeLiveData = MutableLiveData<NetworkResults<CustomerStatusThreeModel>>()
 
     private val CustomerStatusLiveData = MutableLiveData<NetworkResults<CustomerStatusModel>>()
+    private val SetCarDefault = MutableLiveData<NetworkResults<SetCar>>()
 
 
     private val logoutCustomerLiveData = MutableLiveData<NetworkResults<Logout>>()
@@ -189,6 +190,13 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     }
 
 
+    fun setCar(userId: String, carId: String, language: String){
+        viewModelScope.launch{
+            SetCarDefault.value = repo.setCarDefault(userId, carId, language)
+        }
+    }
+
+
 
     fun logoutUser(userId: String){
         viewModelScope.launch{
@@ -213,6 +221,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     fun getCustomerStatusTwoResponse() = CustomerStatusTwoLiveData
     fun getCustomerStatusThreeResponse() = CustomerStatusThreeLiveData
     fun getCustomerStatusResponse() = CustomerStatusLiveData
+    fun getSetCarResponse() = SetCarDefault
     fun getCustomerLogoutResponse() = logoutCustomerLiveData
 
 

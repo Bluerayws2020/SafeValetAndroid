@@ -169,6 +169,16 @@ interface ApiServices {
 
 
     @Multipart
+    @POST("setCarDefualt")
+    suspend fun getSetCarDefault(
+        @Part("uid") uid: RequestBody,
+        @Part("car_id") carId: RequestBody,
+        @Part("lang") lang: RequestBody
+
+        ): SetCar
+
+
+    @Multipart
     @POST("CustomerStatus")
     suspend fun getCustomerStatus(
         @Part("lang") lang: RequestBody,

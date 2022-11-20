@@ -46,6 +46,32 @@ class MyCarFragment: BaseFragment<MyCarsBinding>() {
 
 
 
+
+
+        userVM.getSetCarResponse().observe(viewLifecycleOwner){ result ->
+            when (result) {
+                is NetworkResults.Success -> {
+                    if(result.data.status.status == 1)
+                    {
+                        Toast.makeText(requireContext(), result.data.status.msg, Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        Toast.makeText(requireContext(), "Failed Selected", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                }
+
+                is NetworkResults.Error -> {
+                    result.exception.printStackTrace()
+                    Log.d("=lol",result.exception.toString())
+                    toast("ERROR")
+                }
+            }
+
+        }
+
+
         userVM.getMyCarResponse().observe(viewLifecycleOwner) { result ->
             binding.swipeToRefresh.isRefreshing = false
             when (result) {
@@ -56,7 +82,14 @@ class MyCarFragment: BaseFragment<MyCarsBinding>() {
 
                         carAdapter = CarAdapter(myCarList, requireContext()
                         , object : OnClickListener {
-                            override fun updateCar(pid: String, lang: String?, nickname:String?, carMake:String?
+
+
+                                override fun selectCar(pid: String, cid: String, lang: String) {
+                                    userVM.setCar(pid, cid, lang)
+                                }
+
+
+                                override fun updateCar(pid: String, lang: String?, nickname:String?, carMake:String?
                                                    , carModel:String?, year:String?, plateNo:String?) {
                                 userVM.updateCar(pid.toString(),
                                     lang.toString(), nickname.toString(), carMake.toString(),

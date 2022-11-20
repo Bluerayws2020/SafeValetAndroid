@@ -76,7 +76,7 @@ data class MyCarsDataModel(
     @SerializedName("carModel") val carModel: String,
     @SerializedName("palteNo") val palteNo: String,
     @SerializedName("year") val year: String,
-    @SerializedName("field_isdefualt") val field_isdefualt: String
+    @SerializedName("field_isdefualt") var field_isdefualt: String
 
 ):Parcelable
 
@@ -238,12 +238,11 @@ data class DataModel(
 )
 
 
-//{
-//    "msg": {
-//    "status": 1,
-//    "message": "You are logged out"
-//}
-//}
+data class SetCar(
+    @SerializedName("msg") val status: MessageModel
+
+)
+
 
 data class Logout(
     @SerializedName("msg") val status: MessageModel

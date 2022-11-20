@@ -418,6 +418,35 @@ object NetworkRepository {
 
 
 
+    suspend fun setCarDefault(
+        uid: String,
+        carId: String,
+        lang: String
+
+    ): NetworkResults<SetCar> {
+        return withContext(Dispatchers.IO){
+            val userIdBody = uid.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val carIdBody = carId.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val languageBody = lang.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+//            val seenBody = seen?.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+            try {
+                val results = ApiClient.retrofitService.getSetCarDefault(
+                    userIdBody,
+                    carIdBody,
+                    languageBody
+
+                )
+                NetworkResults.Success(results)
+            } catch (e: Exception){
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+
+
+
     suspend fun logoutUser(
         uid: String
     ): NetworkResults<Logout> {
