@@ -75,5 +75,7 @@
     <string name="trip_completed">Trip Completed</string>
     <string name="_3_20_minutes">3:20 minutes</string>
     <string name="done">Done</string>
+    <string name="hello">Hello, </string>
+    <string name="Notification">Notification </string>
 
 </resources>

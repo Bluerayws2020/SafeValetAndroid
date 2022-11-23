@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.safevalet.databinding.BookPlaceBinding
 import com.example.safevalet.helpers.HelperUtils
 import com.example.safevalet.helpers.ViewUtils.isInputEmpty
@@ -39,6 +40,7 @@ class CarRegistration:  AppCompatActivity(){  //, View.OnClickListener {
         binding = BookPlaceBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 
         val sharedPreferences = getSharedPreferences(HelperUtils.SHARED_PREF, MODE_PRIVATE)

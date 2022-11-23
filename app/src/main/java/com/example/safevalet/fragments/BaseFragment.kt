@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
@@ -27,6 +28,7 @@ abstract class BaseFragment<VB : ViewBinding?/*, VM : ViewModel*/> : Fragment() 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         _binding = getViewBinding(inflater, container)
         return binding.root
     }

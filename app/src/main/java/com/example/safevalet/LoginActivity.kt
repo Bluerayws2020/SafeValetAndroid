@@ -1,20 +1,15 @@
 package com.example.safevalet
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.marginTop
-import androidx.fragment.app.Fragment
-import com.example.safevalet.databinding.ActivityLoginBinding
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.safevalet.databinding.ActivitySignupBinding
-import com.example.safevalet.fragments.HomeFragment
-import com.example.safevalet.fragments.LoginFragment
 import com.example.safevalet.helpers.HelperUtils
 import com.example.safevalet.helpers.ViewUtils.hide
 import com.example.safevalet.helpers.ViewUtils.inVisible
@@ -24,7 +19,6 @@ import com.example.safevalet.model.LoginModel
 import com.example.safevalet.model.NetworkResults
 import com.example.safevalet.model.UserModel
 import com.example.safevalet.viewmodel.UserViewModel
-import com.google.android.material.tabs.TabLayout
 import retrofit2.HttpException
 
 class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
@@ -32,6 +26,8 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
     private lateinit var binding: ActivitySignupBinding
     private val userVM by viewModels<UserViewModel>()
     private val language = "ar"
+//    private val sharedPreferences: SharedPreferences = getSharedPreferences(HelperUtils.SHARED_PREF, MODE_PRIVATE)
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +35,8 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
 
 //        binding.signUpBtn.setOnClickListener(this)
 
@@ -109,7 +107,7 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
                                 result.data.data
                             )
                             val intentSignIn = Intent(this, HomeActivity::class.java)
-//                        intentSignIn.putExtra("flag", "0")
+                            intentSignIn.putExtra("name", binding.nameUser.text.toString())
                             startActivity(intentSignIn)
                             finishAffinity()
                         } else {
@@ -143,6 +141,9 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
                     )
                 }
             }
+//            sharedPreferences.edit().apply {
+//                bun
+//            }.apply()
 
         }
 
@@ -200,6 +201,8 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
                         binding.nameUser.text.toString()
                     )
                 }
+
+
             }
 
 

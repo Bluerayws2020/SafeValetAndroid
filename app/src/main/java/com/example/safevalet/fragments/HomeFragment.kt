@@ -1,6 +1,7 @@
 package com.example.safevalet.fragments
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -18,6 +20,7 @@ import com.bumptech.glide.Glide
 import com.example.safevalet.R
 import com.example.safevalet.databinding.FragmentHomeBinding
 import com.example.safevalet.helpers.HelperUtils
+import com.example.safevalet.helpers.ViewUtils.show
 import com.example.safevalet.model.NetworkResults
 import com.example.safevalet.viewmodel.UserViewModel
 import retrofit2.HttpException
@@ -43,10 +46,20 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//        binding.layoutToolBar.show()
 
         binding.showMyQRImg.setOnClickListener(this)
         binding.callBackMyCarImg.setOnClickListener(this)
         binding.exchange.setOnClickListener(this)
+
+
+
+        binding.toolbarInclude.notficationBtn.setOnClickListener {
+            navController?.navigate(R.id.notificationFragment)
+        }
+
+        binding.toolbarInclude.homeIcon.show()
 
 
         userVM.getBackMyCarResponse().observe(viewLifecycleOwner) { result ->
@@ -212,42 +225,42 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
 
                                 userVM.customerStatusZeroModel(language, userID, "1")
                             }
+//                            1 -> {
+//                                userVM.getCustomerStatusOneResponse()
+//                                    .observe(viewLifecycleOwner) { result ->
+//                                        when (result) {
+//                                            is NetworkResults.Success -> {
+//                                                if (result.data.status.status == 1) {
+//
+//                                                    Toast.makeText(
+//                                                        requireContext(),
+//                                                        result.data.status.msg.toString(),
+//                                                        Toast.LENGTH_SHORT
+//                                                    ).show()
+//
+//                                                    Navigation.findNavController(it)
+//                                                        .navigate(R.id.action_homeFragment_to_showMyCarFragment)
+//                                                }
+//                                            }
+//                                            is NetworkResults.Error -> {
+//                                                result.exception.printStackTrace()
+//                                                if (result.exception is HttpException)
+//                                                    Log.e(
+//                                                        "TAG",
+//                                                        "onViewCreated: ${result.exception}"
+//                                                    )
+//                                                else
+//                                                    Log.e("TAG", "onViewCreated: ERROR")
+//                                            }
+//
+//                                        }
+//
+//                                    }
+//
+//                                userVM.customerStatusOneModel(language, userID)
+//                            }
+
                             1 -> {
-                                userVM.getCustomerStatusOneResponse()
-                                    .observe(viewLifecycleOwner) { result ->
-                                        when (result) {
-                                            is NetworkResults.Success -> {
-                                                if (result.data.status.status == 1) {
-
-                                                    Toast.makeText(
-                                                        requireContext(),
-                                                        result.data.status.msg.toString(),
-                                                        Toast.LENGTH_SHORT
-                                                    ).show()
-
-                                                    Navigation.findNavController(it)
-                                                        .navigate(R.id.action_homeFragment_to_showMyCarFragment)
-                                                }
-                                            }
-                                            is NetworkResults.Error -> {
-                                                result.exception.printStackTrace()
-                                                if (result.exception is HttpException)
-                                                    Log.e(
-                                                        "TAG",
-                                                        "onViewCreated: ${result.exception}"
-                                                    )
-                                                else
-                                                    Log.e("TAG", "onViewCreated: ERROR")
-                                            }
-
-                                        }
-
-                                    }
-
-                                userVM.customerStatusOneModel(language, userID)
-                            }
-
-                            2 -> {
                                 userVM.getCustomerStatusTwoResponse()
                                     .observe(viewLifecycleOwner) { result ->
                                         when (result) {

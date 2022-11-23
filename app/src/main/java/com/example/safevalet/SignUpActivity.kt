@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.safevalet.databinding.ActivitySignupBinding
 import com.example.safevalet.helpers.HelperUtils
 import com.example.safevalet.helpers.ViewUtils.hide
@@ -33,6 +34,8 @@ class SignUpActivity: AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
 
 
         userVM.getRegisterResponse().observe(this) { result ->

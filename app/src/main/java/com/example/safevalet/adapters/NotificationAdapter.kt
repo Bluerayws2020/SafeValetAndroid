@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.safevalet.databinding.CarItemsBinding
 import com.example.safevalet.databinding.HistoryItemsBinding
 import com.example.safevalet.databinding.NotificationItemBinding
+import com.example.safevalet.model.NotificationDataResponse
 
 
-class NotificationAdapter(val context: Context): RecyclerView.Adapter<NotificationAdapter.Holder>() {
+class NotificationAdapter(private val list: ArrayList<ArrayList<NotificationDataResponse>>,
+                          val context: Context): RecyclerView.Adapter<NotificationAdapter.Holder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -21,14 +23,25 @@ class NotificationAdapter(val context: Context): RecyclerView.Adapter<Notificati
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-//        holder.binding.notificationTxt.text = list[position].name
+        holder.binding.statTittle.text = list[position][0].bodyAR
+
+        val date = list[position][0].date
+
+        val time = list[position][0].time
+
+        holder.binding.stationDate.text = "$date \t\t $time"
+
+
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return list.size
     }
 
 
     class Holder(val binding: NotificationItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 }
+
+
+

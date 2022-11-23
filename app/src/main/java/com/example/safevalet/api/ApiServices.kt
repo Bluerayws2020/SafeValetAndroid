@@ -4,6 +4,7 @@ import android.media.tv.TvContract.Channels.Logo
 import android.util.Log
 import com.example.safevalet.model.*
 import okhttp3.RequestBody
+import retrofit2.Call
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -170,12 +171,12 @@ interface ApiServices {
 
     @Multipart
     @POST("setCarDefualt")
-    suspend fun getSetCarDefault(
+    fun getSetCarDefault(
         @Part("uid") uid: RequestBody,
         @Part("car_id") carId: RequestBody,
         @Part("lang") lang: RequestBody
 
-        ): SetCar
+        ): Call<SetCar>
 
 
     @Multipart
@@ -194,6 +195,16 @@ interface ApiServices {
         @Part("uid") uid: RequestBody
 
     ): Logout
+
+
+    @Multipart
+    @POST("getNotficaition")
+    suspend fun getNotification(
+        @Part("lang") lang: RequestBody,
+        @Part("uid") uid: RequestBody
+
+
+        ): NotificationResponse
 
 
 

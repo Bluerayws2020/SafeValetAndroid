@@ -48,7 +48,12 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     private val SetCarDefault = MutableLiveData<NetworkResults<SetCar>>()
 
 
+
+    private val NotificationLiveData = MutableLiveData<NetworkResults<NotificationResponse>>()
+
     private val logoutCustomerLiveData = MutableLiveData<NetworkResults<Logout>>()
+
+
 
 
     private val userInfoLiveData = liveData {
@@ -60,7 +65,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     private val userHistoryLiveData = liveData {
         Log.i("mo", "id: $user_id")
-        val result = repo.showUserHistory(user_id)
+        val result = repo.showUserHistory("user_id")
         emit(result)
     }
 
@@ -190,11 +195,11 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     }
 
 
-    fun setCar(userId: String, carId: String, language: String){
-        viewModelScope.launch{
-            SetCarDefault.value = repo.setCarDefault(userId, carId, language)
-        }
-    }
+//    fun setCar(userId: String, carId: String, language: String){
+//        viewModelScope.launch{
+//            SetCarDefault.value = repo.setCarDefault(userId, carId, language)
+//        }
+//    }
 
 
 
@@ -204,6 +209,14 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+
+    fun getNotificationLive(){
+
+        viewModelScope.launch {
+
+            NotificationLiveData.value = repo.getNotification(language, user_id)
+        }
+    }
 
 
 
@@ -222,6 +235,9 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     fun getCustomerStatusThreeResponse() = CustomerStatusThreeLiveData
     fun getCustomerStatusResponse() = CustomerStatusLiveData
     fun getSetCarResponse() = SetCarDefault
+
+    fun getNotification() = NotificationLiveData
+
     fun getCustomerLogoutResponse() = logoutCustomerLiveData
 
 

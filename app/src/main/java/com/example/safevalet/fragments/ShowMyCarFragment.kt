@@ -3,12 +3,15 @@ package com.example.safevalet.fragments
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.safevalet.R
 import com.example.safevalet.databinding.MeetDriverBinding
 import com.example.safevalet.helpers.HelperUtils
+import com.example.safevalet.helpers.ViewUtils.hide
+import com.example.safevalet.helpers.ViewUtils.show
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -32,9 +35,15 @@ class ShowMyCarFragment: BaseFragment<MeetDriverBinding>(), View.OnClickListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         navController = Navigation.findNavController(view)
 
+
+        binding.toolbarInclude.notficationBtn.setOnClickListener {
+            navController?.navigate(R.id.notificationFragment)
+        }
+        binding.toolbarInclude.homeIcon.hide()
 
         //initializing MultiFormatWriter for QR code
         val mWriter = MultiFormatWriter()

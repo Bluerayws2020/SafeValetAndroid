@@ -9,14 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.safevalet.CarRegistration
+import com.example.safevalet.R
 import com.example.safevalet.adapters.CarAdapter
 import com.example.safevalet.adapters.OnClickListener
 import com.example.safevalet.databinding.MyCarsBinding
+import com.example.safevalet.helpers.HelperUtils
+import com.example.safevalet.helpers.ViewUtils.hide
 import com.example.safevalet.model.MyCarsDataModel
 import com.example.safevalet.model.NetworkResults
 import com.example.safevalet.viewmodel.UserViewModel
@@ -43,8 +48,23 @@ class MyCarFragment: BaseFragment<MyCarsBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 
+        binding.toolbarInclude.toolbar.title = resources.getString(R.string.my_car)
+
+        if (HelperUtils.getLang(applicationContext()) == "ar"){
+            binding.toolbarInclude.menuNotfication .setImageDrawable(resources.getDrawable(R.drawable.ar_back))
+
+        }else {
+            binding.toolbarInclude.menuNotfication .setImageDrawable(resources.getDrawable(R.drawable.back))
+
+        }
+
+        binding.toolbarInclude.notficationBtn.hide()
+        binding.toolbarInclude.menuNotfication.setOnClickListener{
+            navController?.navigate(R.id.homeFragment)
+        }
 
 
 
@@ -84,9 +104,9 @@ class MyCarFragment: BaseFragment<MyCarsBinding>() {
                         , object : OnClickListener {
 
 
-                                override fun selectCar(pid: String, cid: String, lang: String) {
-                                    userVM.setCar(pid, cid, lang)
-                                }
+//                                override fun selectCar(pid: String, cid: String, lang: String) {
+//                                    userVM.setCar(pid, cid, lang)
+//                                }
 
 
                                 override fun updateCar(pid: String, lang: String?, nickname:String?, carMake:String?

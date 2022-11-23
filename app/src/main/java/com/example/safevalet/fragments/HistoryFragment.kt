@@ -7,15 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.safevalet.R
 import com.example.safevalet.adapters.CarAdapter
 import com.example.safevalet.adapters.HistoryAdapter
 import com.example.safevalet.databinding.HistoryBinding
 import com.example.safevalet.databinding.MyCarsBinding
+import com.example.safevalet.helpers.HelperUtils
+import com.example.safevalet.helpers.ViewUtils.hide
 import com.example.safevalet.model.HistoryData
 import com.example.safevalet.model.HistoryRidesModel
 import com.example.safevalet.model.MyCarsDataModel
@@ -42,6 +46,26 @@ class HistoryFragment: BaseFragment<HistoryBinding>(), AdapterView.OnItemSelecte
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+
+
+        binding.toolbarInclude.toolbar.title = resources.getString(R.string.history)
+
+        if (HelperUtils.getLang(applicationContext()) == "ar"){
+            binding.toolbarInclude.menuNotfication .setImageDrawable(resources.getDrawable(R.drawable.ar_back))
+
+        }else {
+            binding.toolbarInclude.menuNotfication .setImageDrawable(resources.getDrawable(R.drawable.back))
+
+        }
+
+        binding.toolbarInclude.menuNotfication.setOnClickListener{
+//            onBackPressedDispatcher.onBackPressed()
+            navController?.navigate(R.id.homeFragment)
+        }
+
+        binding.toolbarInclude.notficationBtn.hide()
 
         userVM.getUserHistoryResponse().observe(viewLifecycleOwner) { result ->
             binding.swipeToRefresh.isRefreshing = false

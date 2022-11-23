@@ -1,6 +1,7 @@
 package com.example.safevalet.model
 
 import android.os.Parcelable
+import com.example.safevalet.R
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
@@ -239,11 +240,59 @@ data class DataModel(
 
 
 data class SetCar(
-    @SerializedName("msg") val status: MessageModel
-
+    @SerializedName("msg") val status: MessageModel,
+    var flag: Boolean = true
 )
 
 
 data class Logout(
     @SerializedName("msg") val status: MessageModel
     )
+
+//name = arrayListOf<String>("My Car","History", "Share", "My Profile", "Settings", "Language", "Logout")
+//val image = arrayListOf<Int>(
+//    R.drawable.car, R.drawable.history, R.drawable.share,
+//    R.drawable.user, R.drawable.settings, R.drawable.translating, R.drawable.logout)
+data class MenuName(
+    val MyCar: String = "My Car",
+    val History: String = "History",
+    val Share: String = "Share",
+    val Profile: String = "My Profile",
+    val Settings: String = "Settings",
+    val Language: String = "Language",
+    val Logout: String = "Logout"
+
+)
+
+data class MenuImage(
+    val car: Int = R.drawable.car,
+    val history: Int = R.drawable.history,
+    val share: Int = R.drawable.share,
+    val user: Int = R.drawable.user,
+    val settings: Int = R.drawable.settings,
+    val translating: Int = R.drawable.translating,
+    val logout: Int = R.drawable.logout
+)
+
+
+
+data class NotificationResponse (
+
+    @SerializedName("msg"  ) var msg  :MessageModel,
+    @SerializedName("data" ) var notification_data : ArrayList<ArrayList<NotificationDataResponse>> = arrayListOf()
+
+)
+
+data class NotificationDataResponse (
+
+
+    @SerializedName("id"      ) var id     : String? = null,
+    @SerializedName("bodyEN"  ) var bodyEN : String? = null,
+    @SerializedName("bodyAR"  ) var bodyAR : String? = null,
+    @SerializedName("date"    ) var date   : String? = null,
+    @SerializedName("time"    ) var time   : String? = null,
+    @SerializedName("uid"     ) var uid    : String? = null,
+    @SerializedName("flag"    ) var flag   : String? = null,
+    @SerializedName("ride_id" ) var rideId : String? = null,
+    @SerializedName("msg_id"  ) var msgId  : String? = null
+)

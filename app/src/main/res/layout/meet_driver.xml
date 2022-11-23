@@ -1,127 +1,300 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+
+    <include
+        android:id="@+id/toolbar_include"
+        layout="@layout/custom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="30dp"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:background="@drawable/qrbox"
-        tools:ignore="UselessParent">
-
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:layout_marginTop="70dp"
+        >
 
         <TextView
             android:id="@+id/whiteMyCar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="20dp"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
             android:text="@string/my_car_35_98634"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="18sp" />
-
-
-    </LinearLayout>
-
-    <!--<FrameLayout-->
-    <!--    android:layout_width="match_parent"-->
-    <!--    android:layout_height="wrap_content"-->
-    <!--    >-->
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="350dp"
-        android:src="@drawable/driver"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="35dp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="220dp"
-        android:alpha="0.5"
-        android:background="@drawable/custom_shape"
-        android:backgroundTint="@color/driver"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
-
+            android:textSize="16sp" />
 
     </LinearLayout>
 
+<!--    <FrameLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        >-->
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="130dp"
+            android:layout_gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/driver" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="230dp"
+            android:alpha="0.6"
+            android:background="@drawable/custom_shape"
+            android:backgroundTint="@color/driver"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+
+        </LinearLayout>
+
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="270dp"
             android:text="@string/meet_the_driver"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
 
     </LinearLayout>
 
 
-    <!--</FrameLayout>-->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="350dp"
-        android:text="@string/_1_show_the_qr_code_to_the_driver"
-        android:textColor="@color/instruction"
-        android:textSize="16sp" />
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="380dp"
-        android:text="@string/_2_let_them_scan_it"
-        android:textColor="@color/instruction"
-        android:textSize="16sp" />
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="410dp"
-        android:text="@string/_3_track_your_car"
-        android:textColor="@color/instruction"
-        android:textSize="16sp" />
+<!--    </FrameLayout>-->
 
 
     <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="450dp"
-        android:background="@drawable/qrrectangle">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:layout_marginTop="300dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="13sp"
+            android:text="@string/_1_show_the_qr_code_to_the_driver"
+            android:textColor="@color/instruction" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/_2_let_them_scan_it"
+            android:textSize="13sp"
+            android:textColor="@color/instruction" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/_3_track_your_car"
+            android:textSize="13sp"
+            android:textColor="@color/instruction"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="180dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="350dp"
+        android:background="@drawable/qrrectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/QRImg"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="105dp"
+            android:layout_height="90dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/whiteqr" />
     </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--<RelativeLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
 
 
-</RelativeLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="110dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        android:background="@drawable/qrbox"-->
+<!--        tools:ignore="UselessParent">-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/whiteMyCar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="28dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/my_car_35_98634"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="18sp" />-->
+
+
+<!--    </LinearLayout>-->
+
+<!--    <FrameLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        >-->
+<!--    <ImageView-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="350dp"-->
+<!--        android:layout_above="@+id/null"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginStart="90dp"-->
+<!--        android:layout_marginTop="35dp"-->
+<!--        android:layout_marginEnd="90dp"-->
+<!--        android:layout_marginBottom="65dp"-->
+<!--        android:src="@drawable/driver" />-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="220dp"-->
+<!--        android:alpha="0.5"-->
+<!--        android:background="@drawable/custom_shape"-->
+<!--        android:backgroundTint="@color/driver"-->
+<!--        android:orientation="vertical"-->
+<!--        tools:ignore="UselessParent">-->
+
+
+<!--    </LinearLayout>-->
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textAlignment="center"-->
+<!--            android:layout_marginTop="300dp"-->
+<!--            android:text="@string/meet_the_driver"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold" />-->
+
+
+<!--    </LinearLayout>-->
+
+
+<!--    </FrameLayout>-->
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginTop="350dp"-->
+<!--        android:text="@string/_1_show_the_qr_code_to_the_driver"-->
+<!--        android:textColor="@color/instruction"-->
+<!--        android:textSize="16sp" />-->
+
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginTop="380dp"-->
+<!--        android:text="@string/_2_let_them_scan_it"-->
+<!--        android:textColor="@color/instruction"-->
+<!--        android:textSize="16sp" />-->
+
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginTop="410dp"-->
+<!--        android:text="@string/_3_track_your_car"-->
+<!--        android:textColor="@color/instruction"-->
+<!--        android:textSize="16sp" />-->
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:layout_marginStart="120dp"-->
+<!--        android:layout_marginTop="450dp"-->
+<!--        android:background="@drawable/qrrectangle">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/QRImg"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:src="@drawable/whiteqr" />-->
+<!--    </LinearLayout>-->
+
+
+<!--</RelativeLayout>-->
 

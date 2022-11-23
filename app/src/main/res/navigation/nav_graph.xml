@@ -93,4 +93,12 @@
     </fragment>
 
 
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.safevalet.fragments.NotificationFragment"
+        android:label="Notification Fragment"
+        tools:layout="@layout/fragment_notification">
+    </fragment>
+
+
 </navigation>
