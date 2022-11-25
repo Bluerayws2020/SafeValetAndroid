@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.safevalet.R
 import com.example.safevalet.databinding.CellMenuItemBinding
 import com.example.safevalet.fragments.ProfileFragment
+import com.example.safevalet.helpers.HelperUtils
 
 
 class MenuAdapter(val context: Context, val name:ArrayList<String>,
@@ -32,6 +33,13 @@ class MenuAdapter(val context: Context, val name:ArrayList<String>,
         holder.binding.textView.text = name[position]
         holder.binding.imageView.setImageResource(image[position])
 //        navController = Navigation.findNavController(holder.itemView)
+
+        if (HelperUtils.getLang(context) == "ar"){
+            holder.binding.arrowAr.setImageResource(R.drawable.left)
+        }else {
+            holder.binding.arrowAr.setImageResource(R.drawable.rsz_righ)
+        }
+
 
         holder.binding.linearView.setOnClickListener{
             listener.onEvent(position)

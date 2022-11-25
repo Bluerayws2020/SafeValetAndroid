@@ -1,5 +1,6 @@
 package com.example.safevalet
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.ColorStateList
@@ -10,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.safevalet.databinding.ActivitySignupBinding
+import com.example.safevalet.helpers.ContextWrapper
 import com.example.safevalet.helpers.HelperUtils
 import com.example.safevalet.helpers.ViewUtils.hide
 import com.example.safevalet.helpers.ViewUtils.inVisible
@@ -20,13 +22,13 @@ import com.example.safevalet.model.NetworkResults
 import com.example.safevalet.model.UserModel
 import com.example.safevalet.viewmodel.UserViewModel
 import retrofit2.HttpException
+import java.util.*
 
 class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
 
     private lateinit var binding: ActivitySignupBinding
     private val userVM by viewModels<UserViewModel>()
     private val language = "ar"
-//    private val sharedPreferences: SharedPreferences = getSharedPreferences(HelperUtils.SHARED_PREF, MODE_PRIVATE)
 
 
 
@@ -38,7 +40,6 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 
-//        binding.signUpBtn.setOnClickListener(this)
 
         binding.userNameCard.hide()
         userVM.getLoginResponse().observe(this) { result ->
@@ -52,6 +53,7 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
 //                        intentSignIn.putExtra("flag", "0")
                         startActivity(intentSignIn)
                         finishAffinity()
+
                     } else {
                         Toast.makeText(
                             this@LoginActivity,
@@ -82,6 +84,8 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
                     language
                 )
             }
+
+            Toast.makeText(this@LoginActivity, "Logged in Successfully ", Toast.LENGTH_SHORT).show()
         }
 
 
@@ -110,6 +114,11 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
                             intentSignIn.putExtra("name", binding.nameUser.text.toString())
                             startActivity(intentSignIn)
                             finishAffinity()
+
+                            Toast.makeText(
+                                this@LoginActivity,
+                                result.data.status.msg,
+                                Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(
                                 this@LoginActivity,
@@ -129,6 +138,8 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
                     }
                 }
             }
+            binding.userMobile.setText("")
+
 
             binding.signUpBtn.setOnClickListener {
                 HelperUtils.hideKeyBoard(this)
@@ -189,6 +200,8 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
                     }
                 }
             }
+            binding.userMobile.setText("")
+
 
             binding.signUpBtn.setOnClickListener {
                 HelperUtils.hideKeyBoard(this)
@@ -201,21 +214,11 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
                         binding.nameUser.text.toString()
                     )
                 }
-
+                Toast.makeText(this@LoginActivity, "Successfully Registration ", Toast.LENGTH_SHORT).show()
 
             }
-
-
         }
-
-
-
-
-
-
-
     }
-
 
 
     private fun isInputValid(): Boolean {
@@ -223,7 +226,7 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
 
         if (binding.userMobile.isInputEmpty()) {
             status = false
-            binding.userMobile.error ?: "Required" //getString(R.string.required)
+            binding.userMobile.error ?: R.string.Required //getString(R.string.required)
         }
 
         return status
@@ -233,7 +236,8 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
         val sharedPreferences = getSharedPreferences(HelperUtils.SHARED_PREF, MODE_PRIVATE)
         sharedPreferences.edit().apply {
             putString("uid", user.uid.toString())
-            putString("user_type", user.type)
+            putString("nickname", user.car.nickName)
+            putString("plateNo", user.car.palteNo)
 
         }.apply()
     }
@@ -254,6 +258,13 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
     private fun hideProgress() {
         binding.signUpBtn.show()
         binding.progressBarLogin.hide()
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        val lang = HelperUtils.getLang(newBase!!)
+        val local = Locale(lang)
+        val newContext = ContextWrapper.wrap(newBase, local)
+        super.attachBaseContext(newContext)
     }
 
 }

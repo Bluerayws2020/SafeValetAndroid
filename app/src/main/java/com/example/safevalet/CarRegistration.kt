@@ -8,7 +8,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.safevalet.databinding.BookPlaceBinding
+import com.example.safevalet.fragments.NotificationFragment
 import com.example.safevalet.helpers.HelperUtils
+import com.example.safevalet.helpers.ViewUtils.hide
 import com.example.safevalet.helpers.ViewUtils.isInputEmpty
 import com.example.safevalet.helpers.ViewUtils.show
 import com.example.safevalet.model.CarModel
@@ -30,6 +32,7 @@ class CarRegistration:  AppCompatActivity(){  //, View.OnClickListener {
     private lateinit var plateNo: String
 
 //    private var flag = "0"
+    private var jorFlag = "0"
 
     companion object {
         var flag = "0"
@@ -48,14 +51,37 @@ class CarRegistration:  AppCompatActivity(){  //, View.OnClickListener {
         val intent = Intent.getIntent("")
 
 
+        binding.toolbarInclude.toolbar.title = resources.getString(R.string.car_registration)
+
+        if (HelperUtils.getLang(applicationContext) == "ar"){
+            binding.toolbarInclude.menuNotfication .setImageDrawable(resources.getDrawable(R.drawable.ar_back))
+
+        }else {
+            binding.toolbarInclude.menuNotfication .setImageDrawable(resources.getDrawable(R.drawable.back))
+
+        }
+
+        binding.toolbarInclude.notficationBtn.setOnClickListener {
+            HomeActivity.comeFromRegister = 1
+            startActivity(Intent(applicationContext, HomeActivity::class.java))
+
+        }
+        binding.toolbarInclude.menuNotfication.setOnClickListener{
+            startActivity(Intent(applicationContext, HomeActivity::class.java))
+        }
+
+
         binding.checkBox1.setOnClickListener{
             binding.checkBox1.isChecked = true
             binding.checkBox2.isChecked = false
+            jorFlag = "1"
+
         }
 
         binding.checkBox2.setOnClickListener{
             binding.checkBox2.isChecked = true
             binding.checkBox1.isChecked = false
+            jorFlag = "0"
         }
 
         userVM.getCarRegisterResponse().observe(this) { result ->
@@ -114,6 +140,7 @@ class CarRegistration:  AppCompatActivity(){  //, View.OnClickListener {
 
             Log.i("user_ID", "onCreate: $user_id")
 
+
         binding.updatebtn.setOnClickListener {
             HelperUtils.hideKeyBoard(this)
             if (isInputValid()) {
@@ -127,9 +154,10 @@ class CarRegistration:  AppCompatActivity(){  //, View.OnClickListener {
                         binding.carMake.text.toString(),
                         binding.carModel.text.toString(),
                         binding.year.text.toString(),
-                        language
+                        language,
+                        jorFlag.toString()
                     )
-                    Toast.makeText(applicationContext, "Car Registered", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(applicationContext, "Car Registered", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(applicationContext, HomeActivity::class.java))
 
                 } else {

@@ -25,6 +25,16 @@
         >
 
 
+        <ProgressBar
+            android:id="@+id/progressBarUserInstitution"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
 <!--        <LinearLayout-->
 <!--            android:id="@+id/layoutToolBar"-->
@@ -93,7 +103,6 @@
         >
 
 
-
         <LinearLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -116,14 +125,14 @@
                 app:layout_constraintVertical_bias="0.347" />
 
             <LinearLayout
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@color/white"
                 >
 
             <LinearLayout
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@color/white"
@@ -144,7 +153,7 @@
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textAlignment="textStart"
                     android:text=""
@@ -172,6 +181,13 @@
                 app:layout_constraintTop_toTopOf="@+id/header_iv_profile" />
 
         </LinearLayout>
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/rsz_close"
+                />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

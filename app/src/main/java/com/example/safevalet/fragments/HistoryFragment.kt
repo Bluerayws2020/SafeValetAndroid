@@ -20,6 +20,7 @@ import com.example.safevalet.databinding.HistoryBinding
 import com.example.safevalet.databinding.MyCarsBinding
 import com.example.safevalet.helpers.HelperUtils
 import com.example.safevalet.helpers.ViewUtils.hide
+import com.example.safevalet.helpers.ViewUtils.show
 import com.example.safevalet.model.HistoryData
 import com.example.safevalet.model.HistoryRidesModel
 import com.example.safevalet.model.MyCarsDataModel
@@ -67,11 +68,21 @@ class HistoryFragment: BaseFragment<HistoryBinding>(), AdapterView.OnItemSelecte
 
         binding.toolbarInclude.notficationBtn.hide()
 
+
+        binding.swipeToRefresh.setOnRefreshListener {
+            binding.historyItems.adapter = null
+            binding.progressBarStation.show()
+            binding.noDatatxt.hide()
+            userVM.getNotificationLive()
+        }
+
+
         userVM.getUserHistoryResponse().observe(viewLifecycleOwner) { result ->
-            binding.swipeToRefresh.isRefreshing = false
             when (result) {
                 is NetworkResults.Success -> {
                     if (result.data.status.status == 1) {
+
+                        Log.i("ruby", "onViewCreated: " + result.data.status.msg)
 
                         myHistoryList = result.data.data
 
@@ -80,11 +91,16 @@ class HistoryFragment: BaseFragment<HistoryBinding>(), AdapterView.OnItemSelecte
                         val layoutManager = LinearLayoutManager(context)
                         binding.historyItems.layoutManager = layoutManager
                         binding.historyItems.adapter = historyAdapter
+                        binding.progressBarStation.hide()
+
 
                         Toast.makeText(requireContext(), result.data.status.msg, Toast.LENGTH_SHORT).show()
 
                     } else {
                         toast("Empty")
+                        binding.progressBarStation.hide()
+                        binding.noDatatxt.show()
+
                     }
                     Log.d("=lol",result.toString())
 

@@ -39,7 +39,8 @@ interface ApiServices {
         @Part("carMake") carMake: RequestBody,
         @Part("carModel") carModel: RequestBody,
         @Part("year") year: RequestBody,
-        @Part("lang") lang: RequestBody
+        @Part("lang") lang: RequestBody,
+        @Part("jordanian") jordanian: RequestBody
 
     ): CarRegisterModel
 

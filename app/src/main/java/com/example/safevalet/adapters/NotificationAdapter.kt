@@ -29,7 +29,7 @@ class NotificationAdapter(private val list: ArrayList<ArrayList<NotificationData
 
         val time = list[position][0].time
 
-        holder.binding.stationDate.text = "$date \t\t $time"
+        "$date \t\t $time".also { holder.binding.stationDate.text = it }
 
 
     }

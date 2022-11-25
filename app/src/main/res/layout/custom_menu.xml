@@ -44,22 +44,11 @@
                 android:textAlignment="center"
                 app:title=""
                 app:titleTextColor="@color/black" />
-            <ImageView
-                android:id="@+id/homeIcon"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:src="@drawable/home"
-                app:layout_constraintEnd_toStartOf="@+id/notficationBtn"
-                app:layout_constraintStart_toEndOf="@+id/menuNotfication"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:visibility="gone"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/notficationBtn"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="start"
                 android:layout_margin="10dp"
                 android:src="@drawable/bell"

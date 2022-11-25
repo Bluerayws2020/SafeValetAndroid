@@ -8,7 +8,7 @@
     <string name="upload">upload</string>
     <string name="choose_language">Choose Language</string>
     <string name="english">English</string>
-    <string name="arabic">العربية</string>
+    <string name="arabic">Arabic</string>
     <string name="MyCar">My Car</string>
     <string name="history">History</string>
     <string name="share">Share</string>
@@ -54,7 +54,7 @@
     <string name="swefieh_village">Swefieh Village</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="home" />
+    <string name="home" >Home</string>
     <string name="login_enter">login</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -70,6 +70,7 @@
     <string name="Required"> Required </string>
     <string name="error"> error </string>
     <string name="my_car">My Car</string>
+    <string name="car_registration">Add Car</string>
     <string name="car_parked">Car Parked</string>
     <string name="_3_min">3 min</string>
     <string name="trip_completed">Trip Completed</string>

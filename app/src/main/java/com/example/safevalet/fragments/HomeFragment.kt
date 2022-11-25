@@ -1,6 +1,7 @@
 package com.example.safevalet.fragments
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -12,14 +13,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.example.safevalet.HomeActivity
 import com.example.safevalet.R
 import com.example.safevalet.databinding.FragmentHomeBinding
 import com.example.safevalet.helpers.HelperUtils
+import com.example.safevalet.helpers.ViewUtils.hide
 import com.example.safevalet.helpers.ViewUtils.show
 import com.example.safevalet.model.NetworkResults
 import com.example.safevalet.viewmodel.UserViewModel
@@ -53,13 +57,34 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
         binding.callBackMyCarImg.setOnClickListener(this)
         binding.exchange.setOnClickListener(this)
 
+        val sharedPreferences = mContext?.getSharedPreferences(HelperUtils.SHARED_PREF, Context.MODE_PRIVATE)
 
+        binding.toolbarInclude.toolbar.title = resources.getString(R.string.home)
+
+
+        val nickName = sharedPreferences?.getString("nickname", "")
+        val plateNo = sharedPreferences?.getString("plateNo", "")
+
+        if(nickName != null || plateNo != null) {
+            "$nickName\t  - \t$plateNo".also { binding.whiteMyCar.text = it }
+        }
+        else if (nickName == null && plateNo == null){
+            "My_Car".also { binding.whiteMyCar.text = it }
+        }
 
         binding.toolbarInclude.notficationBtn.setOnClickListener {
             navController?.navigate(R.id.notificationFragment)
         }
 
-        binding.toolbarInclude.homeIcon.show()
+//        binding.toolbarInclude.homeIcon.show()
+
+
+        if(HomeActivity.comeFromRegister == 1){
+            navController?.navigate(R.id.notificationFragment)
+        }
+        HomeActivity.comeFromRegister = 0
+
+        Log.i("comeFromRegister", "onViewCreated: " + HomeActivity.comeFromRegister)
 
 
         userVM.getBackMyCarResponse().observe(viewLifecycleOwner) { result ->
@@ -77,6 +102,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
                             binding.showCardView.setCardBackgroundColor(Color.parseColor("#FF00B0FF"))
                             binding.showCardView.setContentPadding(10,10,10,10)
 
+//                            binding.progressBarUserInstitution.hide()
 
                         }
 
@@ -85,6 +111,9 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
                             binding.callBackCardView.strokeColor = Color.parseColor("#FF00B0FF")
                             binding.callBackCardView.setCardBackgroundColor(Color.parseColor("#FF00B0FF"))
                             binding.callBackCardView.setContentPadding(10,10,10,10)
+
+//                            binding.progressBarUserInstitution.hide()
+
 
                         }
 
@@ -154,8 +183,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
 
 
 
-
-        binding.callBackCardViewIn.setOnClickListener{
+        binding.callBackMyCarImg.setOnClickListener{
 
             userVM.getCallBackCarResponse().observe(viewLifecycleOwner){ result ->
                 when (result) {
@@ -184,7 +212,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
         userVM.callBackCarModel(userID, language)
 
 
-        binding.showCardViewIn.setOnClickListener {
+        binding.showMyQRImg.setOnClickListener {
 
             userVM.getCustomerStatusResponse().observe(viewLifecycleOwner) { result ->
                 when (result) {

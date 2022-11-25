@@ -92,9 +92,9 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
 
     fun carRegister(uid: String, nickName: String, plateNo: String, carMake: String
-                    , carModel: String, year: String, lang: String){
+                    , carModel: String, year: String, lang: String, jordanian: String){
         viewModelScope.launch{
-            carRegisterMessageLiveData.value = repo.carRegister(uid, nickName, plateNo, carMake, carModel, year ,lang)
+            carRegisterMessageLiveData.value = repo.carRegister(uid, nickName, plateNo, carMake, carModel, year ,lang, jordanian)
         }
     }
 

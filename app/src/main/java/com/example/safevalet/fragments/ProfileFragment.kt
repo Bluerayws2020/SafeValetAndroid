@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.example.safevalet.R
 import com.example.safevalet.databinding.UserProfileBinding
 import com.example.safevalet.helpers.HelperUtils
@@ -75,6 +76,12 @@ class ProfileFragment: BaseFragment<UserProfileBinding>(){
                         setupUserInfo(result.data.data)
                         Log.i("m6o", "onViewCreated: $userID")
 
+
+                        Glide.with(applicationContext())
+                            .load(result.data.data.image)
+                            .placeholder(R.drawable.ic_user_profile)
+                            .error(R.drawable.ic_user_profile)
+                            .into(binding.userImage)
 
 
                     } else {

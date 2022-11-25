@@ -3,6 +3,7 @@ package com.example.safevalet
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -37,7 +38,11 @@ class HomeActivity: AppCompatActivity() {  //, NavigationView.OnNavigationItemSe
     private val language = "ar"
     private val userID by lazy { HelperUtils.getUID(applicationContext)}
     private var notificationAdapter: NotificationAdapter? = null
+    private var listMenuName : ArrayList<String>? = null
 
+    companion object {
+        var comeFromRegister = 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +52,7 @@ class HomeActivity: AppCompatActivity() {  //, NavigationView.OnNavigationItemSe
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 //        binding.layoutToolBar.show()
 
+        binding.toolbarInclude.toolbar.title = resources.getString(R.string.home)
 
 
 
@@ -54,14 +60,18 @@ class HomeActivity: AppCompatActivity() {  //, NavigationView.OnNavigationItemSe
             when (result) {
                 is NetworkResults.Success -> {
                     if (result.data.status.status == 1) {
-                     binding.name.text = result.data.data.userName.toString()
-                        binding.phoneMobile.text = result.data.data.phone.toString()
+
+                            binding.name.text = result.data.data.userName.toString()
+                            binding.phoneMobile.text = result.data.data.phone.toString()
+
+                        Log.i("Arab", "onCreate: " + result.data.data.userName.toString())
 
                             Glide.with(applicationContext)
                                 .load(result.data.data.image)
                                 .placeholder(R.drawable.ic_user_profile)
                                 .error(R.drawable.ic_user_profile)
                                 .into(binding.headerIvProfile)
+                            binding.progressBarUserInstitution.hide()
 
 
                     } else {
@@ -79,11 +89,18 @@ class HomeActivity: AppCompatActivity() {  //, NavigationView.OnNavigationItemSe
             }
         }
 
+                            binding.progressBarUserInstitution.hide()
 
 
+        listMenuName = if (HelperUtils.getLang(this) == "ar"){
+            arrayListOf<String>("سيارتي","السجل", "مشاركة", "ملفي الشخصي", "الاشعارات", "اللغة", "تسجيل خروج")
 
+        }else {
+            arrayListOf<String>("My Car","History", "Share", "My Profile", "\t Notifications", "Language", "Logout")
 
-        val listMenuName = arrayListOf<String>("My Car","History", "Share", "My Profile", "Notifications", "Language", "Logout")
+        }
+
+//        val listMenuName = arrayListOf<String>("My Car","History", "Share", "My Profile", "Notifications", "Language", "Logout")
         val listMenuImage = arrayListOf<Int>(R.drawable.car, R.drawable.history, R.drawable.share,
             R.drawable.user, R.drawable.bluebell, R.drawable.translating, R.drawable.logout)
 
@@ -92,6 +109,7 @@ class HomeActivity: AppCompatActivity() {  //, NavigationView.OnNavigationItemSe
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController!!.graph)
 
+        binding.toolbarInclude.toolbar.title = resources.getString(R.string.home)
 
         Toast.makeText(this@HomeActivity, userID, Toast.LENGTH_SHORT).show()
 
@@ -100,10 +118,13 @@ class HomeActivity: AppCompatActivity() {  //, NavigationView.OnNavigationItemSe
             binding.menuRecycler.show()
         }
 
-        binding.toolbarInclude.homeIcon.show()
+        binding.close.setOnClickListener {
+            binding.menuRecycler.hide()
+        }
+//        binding.toolbarInclude.homeIcon.show()
 //        binding.toolbarInclude.toolbar.background = R.drawable.home
 
-        val adapter = MenuAdapter(this, listMenuName, listMenuImage,object : OnMenuListener{
+        val adapter = MenuAdapter(this, listMenuName!!, listMenuImage,object : OnMenuListener{
             override fun onEvent(position: Int) {
                 when (position) {
                     0 -> {

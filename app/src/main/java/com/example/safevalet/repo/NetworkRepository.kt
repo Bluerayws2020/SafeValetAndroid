@@ -62,7 +62,8 @@ object NetworkRepository {
         carMake: String,
         carModel: String,
         year: String,
-        lang: String
+        lang: String,
+        jordanian: String
     ): NetworkResults<CarRegisterModel> {
         return withContext(Dispatchers.IO){
             val userIdBody = uid.toRequestBody("multipart/form-data".toMediaTypeOrNull())
@@ -72,6 +73,7 @@ object NetworkRepository {
             val yearBody = year.toRequestBody("multipart/form-data".toMediaTypeOrNull())
             val nickNameBody = nickName.toRequestBody("multipart/form-data".toMediaTypeOrNull())
             val languageBody = lang.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val jordanianFlag = lang.toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
             try {
                 val results = ApiClient.retrofitService.carRegister(
@@ -81,7 +83,8 @@ object NetworkRepository {
                     carMakeBody,
                     carModelBody,
                     yearBody,
-                    languageBody
+                    languageBody,
+                    jordanianFlag
                 )
                 NetworkResults.Success(results)
             } catch (e: Exception){

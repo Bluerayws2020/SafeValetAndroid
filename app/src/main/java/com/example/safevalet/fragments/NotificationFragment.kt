@@ -77,34 +77,7 @@ class NotificationFragment: BaseFragment<FragmentNotificationBinding>() {
 
 
         userVM.getNotificationLive()
-
-
-//        binding.toolbarInclude.notficationBtn.setOnClickListener {
-
-            userVM.getNotification().observe(viewLifecycleOwner) { result ->
-                when (result) {
-                    is NetworkResults.Success -> {
-                        if (result.data.msg.status  == 1) {
-                            Toast.makeText(applicationContext(), result.data.msg.msg, Toast.LENGTH_SHORT).show()
-                            setupRecyclerView(result.data.notification_data)
-                            binding.progressBarStation.hide()
-
-                            if(result.data.notification_data.isEmpty()){
-                                binding.noDatatxt.show()
-
-                            }
-
-                        }
-
-                    }
-                    is NetworkResults.Error -> {
-                        result.exception.printStackTrace()
-                        Log.d("ERROR", "notificationFunction: " + "aya")
-                    }
-                }
-//            }
-
-        }
+        notificationFunction()
 
 
 
@@ -120,8 +93,30 @@ class NotificationFragment: BaseFragment<FragmentNotificationBinding>() {
 
 
     private fun notificationFunction(){
+        userVM.getNotification().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is NetworkResults.Success -> {
+                    if (result.data.msg.status  == 1) {
+                        Toast.makeText(applicationContext(), result.data.msg.msg, Toast.LENGTH_SHORT).show()
+                        setupRecyclerView(result.data.notification_data)
+                        binding.progressBarStation.hide()
 
+                        if(result.data.notification_data.isEmpty()){
+                            binding.noDatatxt.show()
 
+                        }
+
+                    }
+
+                }
+                is NetworkResults.Error -> {
+                    result.exception.printStackTrace()
+                    Log.d("ERROR", "notificationFunction: " + "aya")
+                }
+            }
+//            }
+
+        }
 
     }
 

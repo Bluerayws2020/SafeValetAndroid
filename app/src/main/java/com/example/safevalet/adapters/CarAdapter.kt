@@ -112,12 +112,17 @@ class CarAdapter(private val list: List<MyCarsDataModel>, val context: Context,
                                     currentList.field_isdefualt = "0"
                                     response.body()!!.flag = false
 
+                                    Toast.makeText(context, response.body()!!.status.msg, Toast.LENGTH_SHORT).show()
+
                                 }
 
                                 else {
 
                                     currentList.field_isdefualt = "1"
                                     response.body()!!.flag = false
+
+                                    Toast.makeText(context, response.body()!!.status.msg, Toast.LENGTH_SHORT).show()
+
 
                                 }
 

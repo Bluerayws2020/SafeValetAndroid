@@ -1,5 +1,6 @@
 package com.example.safevalet.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
@@ -38,12 +39,26 @@ class ShowMyCarFragment: BaseFragment<MeetDriverBinding>(), View.OnClickListener
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         navController = Navigation.findNavController(view)
+        val sharedPreferences = mContext?.getSharedPreferences(HelperUtils.SHARED_PREF, Context.MODE_PRIVATE)
 
+
+        binding.toolbarInclude.toolbar.title = resources.getString(R.string.show_my_qr)
+
+
+        val nickName = sharedPreferences?.getString("nickname", "")
+        val plateNo = sharedPreferences?.getString("plateNo", "")
+
+        if(nickName != null || plateNo != null) {
+            "$nickName\t  - \t$plateNo".also { binding.whiteMyCar.text = it }
+        }
+        else if (nickName == null && plateNo == null){
+            "My_Car".also { binding.whiteMyCar.text = it }
+        }
 
         binding.toolbarInclude.notficationBtn.setOnClickListener {
             navController?.navigate(R.id.notificationFragment)
         }
-        binding.toolbarInclude.homeIcon.hide()
+//        binding.toolbarInclude.homeIcon.hide()
 
         //initializing MultiFormatWriter for QR code
         val mWriter = MultiFormatWriter()

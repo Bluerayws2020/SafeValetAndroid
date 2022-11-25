@@ -24,12 +24,11 @@ import com.example.safevalet.helpers.ViewUtils.hide
 class LanguageFragment: AppCompatActivity() {
 
     private lateinit var binding: LanguageBinding
+
 //    val sharedPreferences = getSharedPreferences(HelperUtils.SHARED_PREF, MODE_PRIVATE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
         binding = LanguageBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -56,7 +55,9 @@ class LanguageFragment: AppCompatActivity() {
             startActivity(Intent(this, HomeActivity::class.java))
         }
 
-        binding.toolbarInclude.notficationBtn.hide()
+        binding.toolbarInclude.notficationBtn.setOnClickListener {
+//            startActivity(Intent(applicationContext, NotificationFragment::class.java))
+        }
 
 
 

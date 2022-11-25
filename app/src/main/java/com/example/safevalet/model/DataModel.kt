@@ -41,7 +41,7 @@ data class LoginModel(
     @SerializedName("uid") val uid: String,
     @SerializedName("type") val type: String,
     @SerializedName("phone") val phone: String,
-//    @SerializedName("car") val car: CarLoginModel
+    @SerializedName("car") val car: CarLoginModel
 )
 
 data class CarLoginModel(

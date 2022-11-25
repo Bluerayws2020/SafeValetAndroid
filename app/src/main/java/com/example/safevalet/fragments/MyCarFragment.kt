@@ -104,11 +104,6 @@ class MyCarFragment: BaseFragment<MyCarsBinding>() {
                         , object : OnClickListener {
 
 
-//                                override fun selectCar(pid: String, cid: String, lang: String) {
-//                                    userVM.setCar(pid, cid, lang)
-//                                }
-
-
                                 override fun updateCar(pid: String, lang: String?, nickname:String?, carMake:String?
                                                    , carModel:String?, year:String?, plateNo:String?) {
                                 userVM.updateCar(pid.toString(),
