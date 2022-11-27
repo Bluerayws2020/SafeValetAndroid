@@ -3,6 +3,7 @@ package com.example.safevalet.api
 import android.media.tv.TvContract.Channels.Logo
 import android.util.Log
 import com.example.safevalet.model.*
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Multipart
@@ -70,7 +71,7 @@ interface ApiServices {
         @Part("uid") uid: RequestBody,
         @Part("name") name: RequestBody,
         @Part("phone") phone: RequestBody,
-//        @Part("image") image: MultipartBody.Part?
+        @Part("image") image: MultipartBody.Part?
 
         ): UpdateUserInfoModel
 

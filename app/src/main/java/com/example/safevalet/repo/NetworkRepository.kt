@@ -5,7 +5,10 @@ import com.example.safevalet.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 import java.lang.Exception
 
 object NetworkRepository {
@@ -142,7 +145,7 @@ object NetworkRepository {
         uid: String,
         name: String,
         phone: String,
-//        image: File?
+        image: File?
     ): NetworkResults<UpdateUserInfoModel> {
         return withContext(Dispatchers.IO){
             val userIdBody = uid.toRequestBody("multipart/form-data".toMediaTypeOrNull())
@@ -150,14 +153,14 @@ object NetworkRepository {
             val nameBody = name.toRequestBody("multipart/form-data".toMediaTypeOrNull())
             val phoneBody = phone.toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
-//            var imagePart: MultipartBody.Part? = null
-//            image?.let {
-//                imagePart = MultipartBody.Part.createFormData(
-//                    "user_picture",
-//                    it.name,
-//                    it.asRequestBody("image/*".toMediaTypeOrNull())
-//                )
-//            }
+            var imageReq: MultipartBody.Part? = null
+            image?.let {
+                imageReq = MultipartBody.Part.createFormData(
+                    "user_picture",
+                    it.name,
+                    it.asRequestBody("image/*".toMediaTypeOrNull())
+                )
+            }
 
             try {
                 val results = ApiClient.retrofitService.updateUserInfo(
@@ -165,7 +168,7 @@ object NetworkRepository {
                     userIdBody,
                     nameBody,
                     phoneBody,
-//                    imagePart
+                    imageReq
                 )
                 NetworkResults.Success(results)
             } catch (e: Exception){

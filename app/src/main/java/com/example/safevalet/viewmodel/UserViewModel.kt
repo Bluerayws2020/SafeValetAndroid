@@ -12,6 +12,7 @@ import com.example.safevalet.helpers.HelperUtils
 import com.example.safevalet.model.*
 import com.example.safevalet.repo.NetworkRepository
 import kotlinx.coroutines.launch
+import java.io.File
 
 
 class UserViewModel(application: Application): AndroidViewModel(application) {
@@ -132,7 +133,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         userId: String,
         name: String,
         phone: String,
-//        profileImage: File? = null
+        profileImage: File? = null
     ) {
         viewModelScope.launch {
             updateProfileLiveData.value = repo.updateUserInfo(
@@ -140,7 +141,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
                 userId,
                 name,
                 phone,
-//                profileImage
+                profileImage
             )
         }
     }

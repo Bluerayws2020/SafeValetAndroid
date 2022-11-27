@@ -105,7 +105,9 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.0-alpha04'
 
+// compress Images
+    implementation 'com.android.volley:volley:1.2.1'
 
-
+    implementation 'id.zelory:compressor:3.0.1'
 
 }
