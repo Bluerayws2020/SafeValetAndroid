@@ -101,8 +101,8 @@ class HomeActivity: AppCompatActivity() {  //, NavigationView.OnNavigationItemSe
         }
 
 //        val listMenuName = arrayListOf<String>("My Car","History", "Share", "My Profile", "Notifications", "Language", "Logout")
-        val listMenuImage = arrayListOf<Int>(R.drawable.car, R.drawable.history, R.drawable.share,
-            R.drawable.user, R.drawable.bluebell, R.drawable.translating, R.drawable.logout)
+        val listMenuImage = arrayListOf<Int>(R.drawable.carr, R.drawable.hhistory, R.drawable.sshare,
+            R.drawable.userr, R.drawable.bbell, R.drawable.ttranslating, R.drawable.llogout)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
