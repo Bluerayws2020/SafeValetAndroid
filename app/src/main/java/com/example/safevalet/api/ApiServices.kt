@@ -71,9 +71,11 @@ interface ApiServices {
         @Part("uid") uid: RequestBody,
         @Part("name") name: RequestBody,
         @Part("phone") phone: RequestBody,
-        @Part("image") image: MultipartBody.Part?
+        @Part image: MultipartBody.Part?,
+        @Part("image") imageName: RequestBody?
 
-        ): UpdateUserInfoModel
+
+    ): UpdateUserInfoModel
 
 
     @Multipart

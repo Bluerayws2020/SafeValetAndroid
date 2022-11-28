@@ -99,8 +99,7 @@ data class UserData(
     @SerializedName("phone") val phone: String,
     @SerializedName("userName") val userName: String,
     @SerializedName("mail") val mail: String,
-    @SerializedName("image") val image: String,
-
+    @SerializedName("image") val image: String
     )
 
 

@@ -129,15 +129,15 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun updateUserProfile(
-        language: String,
+        language: String? = null,
         userId: String,
-        name: String,
-        phone: String,
+        name: String? = null,
+        phone: String? = null,
         profileImage: File? = null
     ) {
         viewModelScope.launch {
             updateProfileLiveData.value = repo.updateUserInfo(
-                language,
+                language!!,
                 userId,
                 name,
                 phone,

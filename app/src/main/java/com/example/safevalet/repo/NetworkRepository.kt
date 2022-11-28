@@ -143,32 +143,35 @@ object NetworkRepository {
     suspend fun updateUserInfo(
         lang: String,
         uid: String,
-        name: String,
-        phone: String,
+        name: String?,
+        phone: String?,
         image: File?
     ): NetworkResults<UpdateUserInfoModel> {
         return withContext(Dispatchers.IO){
             val userIdBody = uid.toRequestBody("multipart/form-data".toMediaTypeOrNull())
             val languageBody = lang.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-            val nameBody = name.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-            val phoneBody = phone.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val nameBody = name?.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val phoneBody = phone?.toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
             var imageReq: MultipartBody.Part? = null
             image?.let {
                 imageReq = MultipartBody.Part.createFormData(
-                    "user_picture",
+                    "image",
                     it.name,
                     it.asRequestBody("image/*".toMediaTypeOrNull())
                 )
             }
 
+            val nameImage = image?.name?.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+
             try {
                 val results = ApiClient.retrofitService.updateUserInfo(
                     languageBody,
                     userIdBody,
-                    nameBody,
-                    phoneBody,
-                    imageReq
+                    nameBody!!,
+                    phoneBody!!,
+                    imageReq,
+                    nameImage
                 )
                 NetworkResults.Success(results)
             } catch (e: Exception){

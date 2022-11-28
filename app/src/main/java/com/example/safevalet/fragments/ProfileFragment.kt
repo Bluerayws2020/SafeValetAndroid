@@ -49,6 +49,7 @@ class ProfileFragment: BaseFragment<UserProfileBinding>(){
 
     private var mediaPath: String? = null
     private var postPath: String? = null
+//    private var compressedImageFile :File? = null
 
 //    private var compressedImageFile: File? = null
 
@@ -141,11 +142,10 @@ class ProfileFragment: BaseFragment<UserProfileBinding>(){
 //            HelperUtils.hideKeyBoard()
 
             userVM.updateUserProfile(
-                language = "ar",
-                userId = userID,
+                language,
+                userID,
                 binding.yourName.text.trim().toString(),
-                binding.mobile.text.trim().toString(),
-//                compressedImageFile
+                binding.mobile.text.trim().toString()
             )
         }
 
@@ -239,21 +239,25 @@ class ProfileFragment: BaseFragment<UserProfileBinding>(){
                 binding.userImage.setImageBitmap(BitmapFactory.decodeFile(mediaPath))
                 postPath = mediaPath
 
-                Log.i("postPath", "onActivityResult:  " + mediaPath.toString())
-
                 val imageFile = File(mediaPath.toString())
+
+                Log.i("postPath", "onActivityResult:  " + imageFile.toString())
 
 
                 lifecycleScope.launch {
+
                     val compressedImageFile =
                         Compressor.compress(requireContext(), imageFile, Dispatchers.IO)
+
+
                     userVM.updateUserProfile(
                         language,
-                        userId = userID.toString(),
-                        name = binding.yourName.text.trim().toString(),
-                        phone = binding.mobile.text.trim().toString(),
-                        profileImage = compressedImageFile
+                        userID,
+                        name = "",
+                        phone = "",
+                        compressedImageFile
                     )
+
                 }
 
             } else if (resultCode != Activity.RESULT_CANCELED) {
