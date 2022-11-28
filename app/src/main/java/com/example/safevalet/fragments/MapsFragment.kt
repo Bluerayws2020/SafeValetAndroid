@@ -19,7 +19,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.example.safevalet.R
-import com.example.safevalet.databinding.FragmentMapsBinding
+import com.example.safevalet.databinding.FragmentMapBinding
 import com.example.safevalet.helpers.HelperUtils
 import com.example.safevalet.model.NetworkResults
 import com.example.safevalet.viewmodel.UserViewModel
@@ -53,15 +53,8 @@ class MapsFragment : Fragment()  {
     private val userVM by viewModels<UserViewModel>()
     private val language = "ar"
     private val userID by lazy { HelperUtils.getUID(context)}
-    private lateinit var binding: FragmentMapsBinding
+    private lateinit var binding: FragmentMapBinding
 
-
-//    override fun getViewBinding(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?
-//    ): FragmentMapsBinding {
-//        return FragmentMapsBinding.inflate(inflater, container, false)
-//    }
 
 
     override fun onCreateView(
@@ -69,7 +62,7 @@ class MapsFragment : Fragment()  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_maps, container, false)
+        return inflater.inflate(R.layout.fragment_map, container, false)
 
     }
 
@@ -90,13 +83,12 @@ class MapsFragment : Fragment()  {
         val cameraImg = view.findViewById<ImageView>(R.id.carImg)
 
         navController = Navigation.findNavController(view)
+
+
 //
         userVM.getCustomerStatusTwoResponse().observe(viewLifecycleOwner){ result ->
             when (result) {
                 is NetworkResults.Success -> {
-
-                    Toast.makeText(requireContext(), result.data.status.msg.toString() , Toast.LENGTH_SHORT).show()
-
 
                     driverName.text = result.data.data.name.toString()
                     driverJob.text = result.data.data.type.toString()
@@ -107,11 +99,6 @@ class MapsFragment : Fragment()  {
                         .placeholder(R.drawable.ic_user_profile)
                         .error(R.drawable.ic_user_profile)
                         .into(driverImg)
-
-//                    binding.driverImg = result.data.data.driver_image.toString()
-
-
-//                    Log.i("car image", "onViewCreated: " + result.data.car.image)
 
                     if (result.data.param == "seen" || result.data.param == "outOK")
                     {
@@ -147,15 +134,12 @@ class MapsFragment : Fragment()  {
             when (result) {
                 is NetworkResults.Success -> {
 
-                    Toast.makeText(requireContext(), result.data.status.msg.toString() , Toast.LENGTH_SHORT).show()
-
-
                     driverName.text = result.data.data.name.toString()
                     driverJob.text = result.data.data.type.toString()
                     carName.text = result.data.data.carName.toString()
 
                     Glide.with(requireContext())
-                        .load(HelperUtils.BASE_URL + result.data.data.driver_image)
+                        .load(result.data.data.driver_image)
                         .placeholder(R.drawable.ic_user_profile)
                         .error(R.drawable.ic_user_profile)
                         .into(driverImg)
@@ -189,35 +173,6 @@ class MapsFragment : Fragment()  {
                             Toast.LENGTH_SHORT
                         ).show()
 
-//                    binding.driverImg = result.data.data.driver_image.toString()
-
-
-//                    Log.i("car image", "onViewCreated: " + result.data.car.image)
-
-                        cameraImg.setOnClickListener {
-
-                            val dialogBinding2 =
-                                layoutInflater.inflate(R.layout.popup_window_car_image, null)
-
-                            val myDialog2 = Dialog(requireContext())
-                            myDialog2.setContentView(dialogBinding2)
-
-
-                            myDialog2.setCancelable(true)
-                            myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                            myDialog2.show()
-
-                            val carImg = dialogBinding2.findViewById<ImageView>(R.id.aImg)
-
-                            if (result.data.car.image.isNotEmpty()) {
-                                Glide.with(requireContext())
-                                    .load(HelperUtils.BASE_URL + result.data.car.image)
-                                    .placeholder(R.drawable.ic_user_profile)
-                                    .error(R.drawable.ic_user_profile)
-                                    .into(carImg)
-                            }
-                        }
-
                         if (result.data.param == "seen" || result.data.param == "outOK") {
                             carStatus.text = "Parked"
                         } else {
@@ -232,6 +187,7 @@ class MapsFragment : Fragment()  {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+
                     }
                 }
                 is NetworkResults.Error -> {
@@ -245,8 +201,63 @@ class MapsFragment : Fragment()  {
             }
         }
 
+
         userVM.customerStatusThreeModel(language, userID)
 
 
+        cameraImg.setOnClickListener {
+            userVM.getCustomerStatusThreeResponse().observe(viewLifecycleOwner){ result ->
+                when (result) {
+                    is NetworkResults.Success -> {
+
+                        val dialogBinding2 =
+                            layoutInflater.inflate(R.layout.popup_window_car_image, null)
+
+
+                        val myDialog2 = Dialog(requireContext())
+                        myDialog2.setContentView(dialogBinding2)
+
+                        val carImg = dialogBinding2.findViewById<ImageView>(R.id.aImg)
+
+
+                        if (result.data.car.image.isNotEmpty()) {
+                            Glide.with(requireContext())
+                                .load(result.data.car.image)
+                                .placeholder(R.drawable.ic_user_profile)
+                                .error(R.drawable.ic_user_profile)
+                                .into(carImg)
+                        }
+
+                        myDialog2.setCancelable(true)
+                        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        myDialog2.show()
+
+
+
+                        val doneeBtn = dialogBinding2.findViewById<TextView>(R.id.Done)
+                        doneeBtn.setOnClickListener {
+                            myDialog2.dismiss()
+                        }
+
+
+
+                    }
+                    is NetworkResults.Error -> {
+                        result.exception.printStackTrace()
+                        if (result.exception is HttpException)
+                            Log.e("TAG", "onViewCreated: ${result.exception}")
+                        else
+                            Log.e("TAG", "onViewCreated: ERROR")
+                    }
+                }
+            }
+
+            userVM.customerStatusThreeModel(language, userID)
+
+        }
+
+
+
     }
+
 }
