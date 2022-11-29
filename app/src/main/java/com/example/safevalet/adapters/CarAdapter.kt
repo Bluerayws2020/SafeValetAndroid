@@ -129,6 +129,9 @@ class CarAdapter(private val list: List<MyCarsDataModel>, val context: Context,
 
 
                             }
+                            else{
+                                Toast.makeText(context, response.body()!!.status.msg.toString(), Toast.LENGTH_SHORT).show()
+                            }
                         }
                     })
             notifyDataSetChanged()
