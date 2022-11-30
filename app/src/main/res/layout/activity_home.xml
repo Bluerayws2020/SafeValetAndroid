@@ -180,14 +180,25 @@
                 app:layout_constraintTop_toTopOf="@+id/header_iv_profile" />
 
         </LinearLayout>
-            <ImageView
-                android:id="@+id/close"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/rsz_close"
-                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="end"
+                >
+                <ImageView
+                    android:id="@+id/close"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:background="@drawable/rsz_close"
+                    android:layout_gravity="end"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/navigationView"

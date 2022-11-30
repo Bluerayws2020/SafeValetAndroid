@@ -110,4 +110,9 @@ dependencies {
 
     implementation 'id.zelory:compressor:3.0.1'
 
+
+    // gif image
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
+
+
 }

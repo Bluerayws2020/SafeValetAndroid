@@ -4,26 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/product_card"
-    android:layout_width="wrap_content"
-    android:layout_marginTop="40dp"
+    android:layout_width="match_parent"
+    android:layout_marginTop="35dp"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     app:cardElevation="5dp">
 
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        tools:context=".fragments.MapsFragment"
-        />
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/map"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:name="com.google.android.gms.maps.SupportMapFragment"-->
+<!--        tools:context=".fragments.MapsFragment"-->
+<!--        />-->
 
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="380dp"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:background="@drawable/boxmap"
         android:backgroundTint="@color/gray"
@@ -33,38 +33,40 @@
 
 
         <LinearLayout
+            android:id="@+id/box1"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/box2"
             app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
+            android:gravity="start"
 
             >
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/driverImg"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/img"
+                android:src="@drawable/user"
                 android:clickable="true"
                 android:focusable="true"
-                android:contentDescription="" />
+             />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/gray"
             android:orientation="vertical"
+            android:layout_gravity="start"
             android:layout_marginStart="30dp"
             >
 
             <TextView
                 android:id="@+id/driverName"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="@string/ahmad_zuhair"
                 android:textSize="16dp"
@@ -79,13 +81,31 @@
 
         </LinearLayout>
 
-            <ImageView
+<!--            <ImageView-->
+<!--                android:id="@+id/driverMobile"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginStart="30dp"-->
+<!--                android:src="@drawable/phonecall"-->
+<!--                android:contentDescription="" />-->
+
+<!--            <com.gifLoader.GifImageView // **of your GifImageView.java**-->
+<!--            android:id="@+id/GifImageView"-->
+<!--            android:layout_height="@dimen/txt_size_1"-->
+<!--            android:layout_width="@dimen/txt_size_1"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginBottom="@dimen/sb_progrees_margin_lr"-->
+<!--            android:layout_centerInParent="true" />-->
+
+            <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/driverMobile"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="30dp"
-                android:src="@drawable/phonecall"
-                android:contentDescription="" />
+                android:src="@drawable/callgif"
+                android:background="@color/gray"
+                />
 
 
         </LinearLayout>
@@ -93,34 +113,42 @@
 
 
         <ImageView
+            android:id="@+id/line"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:src="@drawable/historyline"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="150dp"
             />
 
 
 
         <LinearLayout
+            android:id="@+id/box2"
             android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line"
             android:orientation="horizontal"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="30dp"
             android:gravity="start"
 
             >
 
+
             <ImageView
+                android:id="@+id/carImage"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/mapcar" />
+                android:layout_marginStart="10dp"
+                android:src="@drawable/mapcar"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="" />
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -128,10 +156,11 @@
                 android:backgroundTint="@color/gray"
                 android:orientation="vertical"
                 android:layout_marginStart="30dp"
+                android:layout_gravity="start"
                 >
                 <TextView
                     android:id="@+id/carName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/my_car"
                     android:textSize="16dp"
@@ -152,7 +181,7 @@
                 android:id="@+id/carImg"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="30dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_marginTop="8dp"

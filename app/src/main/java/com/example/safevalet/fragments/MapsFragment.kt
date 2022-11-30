@@ -1,8 +1,10 @@
 package com.example.safevalet.fragments
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -110,8 +112,13 @@ class MapsFragment : Fragment()  {
                     }
 
 
-                    driverMobile.setOnClickListener{
-                        Toast.makeText(requireContext(), result.data.data.phone, Toast.LENGTH_SHORT).show()
+                    driverMobile.setOnClickListener {
+
+                        val intent = Intent(Intent.ACTION_DIAL)
+                        val uri = Uri.parse("tel:" + result.data.data.phone)
+                        intent.data = uri
+                        startActivity(intent)
+
                     }
 
                 }
@@ -177,15 +184,6 @@ class MapsFragment : Fragment()  {
                             carStatus.text = "Parked"
                         } else {
                             carStatus.text = "Parking in Progress"
-                        }
-
-
-                        driverMobile.setOnClickListener {
-                            Toast.makeText(
-                                requireContext(),
-                                result.data.data.phone,
-                                Toast.LENGTH_SHORT
-                            ).show()
                         }
 
                     }

@@ -348,8 +348,12 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
             }
 
             R.id.exchange -> {
+//                Navigation.findNavController(v)
+//                    .navigate(R.id.action_homeFragment_to_exchangeCarFragment)
+
                 Navigation.findNavController(v)
-                    .navigate(R.id.action_homeFragment_to_exchangeCarFragment)
+                    .navigate(R.id.action_homeFragment_to_mapFragment)
+
             }
 
         }
