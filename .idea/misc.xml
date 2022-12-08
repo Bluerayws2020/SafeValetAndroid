@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2195" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/drawable/bakgroundmenyitem.xml" value="0.1075" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/drawable/circle_btns.xml" value="0.204" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/drawable/custom_shape.xml" value="0.2195" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2195" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/drawable/ic_user_profile.xml" value="0.235" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/drawable/rectangle.xml" value="0.1" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/drawable/rounded_box.xml" value="0.116" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/drawable/rounded_btn.xml" value="0.2195" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/activity_home.xml" value="0.2" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/activity_signup.xml" value="0.2" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/book_place.xml" value="0.16" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/car_details.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/car_items.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/enable_location.xml" value="0.2" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/fragment_blank.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/fragment_call_back_mycar.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/fragment_fullscreen.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/fragment_home.xml" value="0.19401709401709402" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/fragment_my__profile_.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/history.xml" value="0.1" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/history_items.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/home.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/language.xml" value="0.176" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/map.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/meet_driver.xml" value="0.21603260869565216" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/my_cars.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/my_profile.xml" value="0.264" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/notification.xml" value="0.2359375" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/scan_qr.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/splash_screen.xml" value="0.2" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/layout/user_profile.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/menu-v26/navigation_menu.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/menu/navigation_menu.xml" value="0.176" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/mipmap-anydpi-v26/safe_valet_V2.xml" value="0.233" />
+        <entry key="..\:/Users/Blueray/AndroidStudioProjects/SafeValet/app/src/main/res/xml/dimens.xml" value="0.209375" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/book_place.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/car_items.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/custom_menu.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/enable_location.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/fragment_call_back_mycar.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.11" />
+        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.10155232747395831" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.16598052978515626" />
+        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/headeritem.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/history.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/language.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/meet_driver.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/my_profile.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/notification_item.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/popup_window.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/popup_window_car_image.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/splash_screen.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/user_profile.xml" value="0.23333333333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
+  </component>
+</project>

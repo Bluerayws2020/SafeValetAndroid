@@ -1,0 +1,229 @@
+package com.example.safevalet
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.Gravity
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.size
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.example.safevalet.adapters.HistoryAdapter
+import com.example.safevalet.adapters.MenuAdapter
+import com.example.safevalet.adapters.NotificationAdapter
+import com.example.safevalet.adapters.OnMenuListener
+import com.example.safevalet.databinding.ActivityHomeBinding
+import com.example.safevalet.fragments.*
+import com.example.safevalet.helpers.HelperUtils
+import com.example.safevalet.helpers.ViewUtils.hide
+import com.example.safevalet.helpers.ViewUtils.show
+import com.example.safevalet.model.NetworkResults
+import com.example.safevalet.model.NotificationDataResponse
+import com.example.safevalet.viewmodel.UserViewModel
+import retrofit2.HttpException
+
+class HomeActivity: AppCompatActivity() {  //, NavigationView.OnNavigationItemSelectedListener {
+
+    private lateinit var binding: ActivityHomeBinding
+    private var navController: NavController? = null
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private val userVM by viewModels<UserViewModel>()
+    private val language = "ar"
+    private val userID by lazy { HelperUtils.getUID(applicationContext)}
+    private var notificationAdapter: NotificationAdapter? = null
+    private var listMenuName : ArrayList<String>? = null
+
+    companion object {
+        var comeFromRegister = 0
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        supportActionBar?.hide()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//        binding.layoutToolBar.show()
+
+        binding.toolbarInclude.toolbar.title = resources.getString(R.string.home)
+
+
+
+        userVM.getUserInfo().observe(this) { result ->
+            when (result) {
+                is NetworkResults.Success -> {
+                    if (result.data.status.status == 1) {
+
+                        binding.name.text = result.data.data.userName.toString()
+                        binding.phoneMobile.text = result.data.data.phone.toString()
+
+                        Log.i("Arab", "onCreate: " + result.data.data.userName.toString())
+
+                        Glide.with(applicationContext)
+                            .load(result.data.data.image)
+                            .placeholder(R.drawable.ic_user_profile)
+                            .error(R.drawable.ic_user_profile)
+                            .into(binding.headerIvProfile)
+                        binding.progressBarUserInstitution.hide()
+
+
+                    } else {
+                        Toast.makeText(applicationContext, result.data.status.msg, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+                is NetworkResults.Error -> {
+                    result.exception.printStackTrace()
+                    if (result.exception is HttpException)
+                        Log.e("TAG", "onViewCreated: ${result.exception}")
+                    else
+                        Log.e("TAG", "onViewCreated: ERROR")
+                }
+            }
+        }
+
+        binding.progressBarUserInstitution.hide()
+
+
+        listMenuName = if (HelperUtils.getLang(this) == "ar"){
+            arrayListOf<String>("سيارتي","السجل", "مشاركة", "ملفي الشخصي", "الاشعارات", "اللغة", "تسجيل خروج")
+
+        }else {
+            arrayListOf<String>("My Car","History", "Share", "My Profile", "Notifications", "Language", "Logout")
+
+        }
+
+//        val listMenuName = arrayListOf<String>("My Car","History", "Share", "My Profile", "Notifications", "Language", "Logout")
+        val listMenuImage = arrayListOf<Int>(R.drawable.carr, R.drawable.hhistory, R.drawable.sshare,
+            R.drawable.userr, R.drawable.bbell, R.drawable.ttranslating, R.drawable.llogout)
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+        appBarConfiguration = AppBarConfiguration(navController!!.graph)
+
+        binding.toolbarInclude.toolbar.title = resources.getString(R.string.home)
+
+        Toast.makeText(this@HomeActivity, userID, Toast.LENGTH_SHORT).show()
+
+
+        binding.toolbarInclude.menuNotfication.setOnClickListener {
+            binding.menuRecycler.show()
+        }
+
+        binding.close.setOnClickListener {
+            binding.menuRecycler.hide()
+        }
+//        binding.toolbarInclude.homeIcon.show()
+//        binding.toolbarInclude.toolbar.background = R.drawable.home
+
+        val adapter = MenuAdapter(this, listMenuName!!, listMenuImage,object : OnMenuListener{
+            override fun onEvent(position: Int) {
+                when (position) {
+                    0 -> {
+
+                        startActivity(Intent(this@HomeActivity, MyCarFragment::class.java))
+                        binding.menuRecycler.hide()
+
+                    }
+                    1 -> {
+                        startActivity(Intent(this@HomeActivity,HistoryFragment::class.java))
+                        binding.menuRecycler.hide()
+
+                    }
+                    2 -> {
+                        Toast.makeText(this@HomeActivity, "Share", Toast.LENGTH_SHORT).show()
+
+                        val intent= Intent()
+                        intent.action=Intent.ACTION_SEND
+                        intent.putExtra(Intent.EXTRA_TEXT,"https://play.google.com/store/apps/details?id=com.blueray.valet_driver")
+                        intent.type="text/plain"
+                        startActivity(Intent.createChooser(intent,"Share To:"))
+
+                        binding.menuRecycler.hide()
+
+                    }
+                    3 -> {
+                        startActivity(Intent(this@HomeActivity, ProfileFragment::class.java))
+                        binding.menuRecycler.hide()
+
+                    }
+                    4 -> {
+                        startActivity(Intent(this@HomeActivity, NotificationFragment::class.java))
+                        binding.menuRecycler.hide()
+
+                    }
+                    5 -> {
+                        startActivity(Intent(this@HomeActivity,LanguageFragment::class.java))
+                        binding.menuRecycler.hide()
+
+                    }
+                    6 -> {
+                        logout()
+                        userVM.logoutUser(userID)
+
+                    }
+                }
+            }
+
+        })
+
+        binding.navigationView.adapter = adapter
+
+        val layoutManager = LinearLayoutManager(this)
+        binding.navigationView.layoutManager = layoutManager
+
+
+    }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController!!, appBarConfiguration)
+
+    }
+
+    private fun logout(){
+
+        userVM.getCustomerLogoutResponse().observe(this) { result ->
+            when (result) {
+                is NetworkResults.Success -> {
+                    if (result.data.status.status == 1) {
+                        logoutFunction()
+                        Toast.makeText(this@HomeActivity, result.data.status.msg, Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+                is NetworkResults.Error -> {
+                    result.exception.printStackTrace()
+                    if (result.exception is HttpException)
+                        Log.e("TAG", "onViewCreated: ${result.exception}")
+                    else
+                        Log.e("TAG", "onViewCreated: ERROR")
+                }
+                else -> {}
+            }
+
+        }
+
+    }
+
+
+
+    private fun logoutFunction() {
+        val sharedPreferences = getSharedPreferences(HelperUtils.SHARED_PREF, MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+        val intentSplash = Intent(this, MainActivity::class.java)
+        startActivity(intentSplash)
+        finish()
+    }
+
+
+
+}
