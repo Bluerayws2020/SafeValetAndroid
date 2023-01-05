@@ -1,6 +1,7 @@
 package com.example.safevalet.repo
 
 import com.example.safevalet.api.ApiClient
+import com.example.safevalet.api.ApiServices
 import com.example.safevalet.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -9,6 +10,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.lang.Exception
 
 object NetworkRepository {
+    private fun String.toFormBody() = toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
     suspend fun userRegister(
         phone: String,
@@ -521,6 +523,42 @@ object NetworkRepository {
         }
     }
 
+
+    suspend fun checkOTPCode(
+        phone: String,
+        OTPCode: String,
+        type: String,
+        language: String,
+    ) = withContext(Dispatchers.IO) {
+        try {
+            val results = ApiClient.retrofitService.checkOTPCode(
+                phone.toFormBody(),
+                OTPCode.toFormBody(),
+                type.toFormBody(),
+                language.toFormBody(),
+            )
+            NetworkResults.Success(results)
+        } catch (e: Exception) {
+            NetworkResults.Error(e)
+        }
+    }
+
+    suspend fun resendOTPCode(
+        phone: String,
+        type: String,
+        language: String,
+    ) = withContext(Dispatchers.IO) {
+        try {
+            val results = ApiClient.retrofitService.resendOTPCode(
+                phone.toFormBody(),
+                type.toFormBody(),
+                language.toFormBody(),
+            )
+            NetworkResults.Success(results)
+        } catch (e: Exception) {
+            NetworkResults.Error(e)
+        }
+    }
 
 
 }

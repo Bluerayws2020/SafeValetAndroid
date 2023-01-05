@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.safevalet.databinding.ActivitySignupBinding
+import com.example.safevalet.helpers.CacheUtils
 import com.example.safevalet.helpers.ContextWrapper
 import com.example.safevalet.helpers.HelperUtils
 import com.example.safevalet.helpers.ViewUtils.hide
@@ -19,8 +20,10 @@ import com.example.safevalet.helpers.ViewUtils.isInputEmpty
 import com.example.safevalet.helpers.ViewUtils.show
 import com.example.safevalet.model.LoginModel
 import com.example.safevalet.model.NetworkResults
+import com.example.safevalet.model.OTPInfo
 import com.example.safevalet.model.UserModel
 import com.example.safevalet.viewmodel.UserViewModel
+import org.koin.android.ext.android.inject
 import retrofit2.HttpException
 import java.util.*
 
@@ -29,6 +32,7 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
     private lateinit var binding: ActivitySignupBinding
     private val userVM by viewModels<UserViewModel>()
     private val language = "ar"
+    private val cacheUtils by inject<CacheUtils>()
 
 
 
@@ -42,6 +46,8 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
 
 
         binding.userNameCard.hide()
+
+// here we go again
         userVM.getLoginResponse().observe(this) { result ->
             when (result) {
                 is NetworkResults.Success -> {
@@ -49,10 +55,35 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
                         saveUserDataLogin(
                             result.data.data
                         )
-                        val intentSignIn = Intent(this, HomeActivity::class.java)
-//                        intentSignIn.putExtra("flag", "0")
-                        startActivity(intentSignIn)
-                        finishAffinity()
+
+                        result.data.data.let {
+//                            if (it.otp.isNotEmpty()) {
+                            if(it.phone == ""){
+//                                cacheUtils.saveUserData(
+//                                    result.data.data,
+//                                    userPass,
+//                                    binding.rememberMeCheckbox.isChecked,
+//                                )
+                                val intentSignIn = Intent(this, HomeActivity::class.java)
+                    //                        intentSignIn.putExtra("flag", "0")
+                                startActivity(intentSignIn)
+                                finishAffinity()
+
+                            }
+
+                            else {
+                                val intentOtp = Intent(this, OtpActivity::class.java)
+//                                val loginOTPInfo = OTPInfo.LoginOTP(
+//                                    loginData = it,
+//                                    userPassword = userPass,
+//                                    isRemembered = binding.rememberMeCheckbox.isChecked,
+//                                    phoneNumber = it.phoneNumber,
+//                                    otpType = LOGIN_OTP,
+//                                )
+//                                intentOtp.putExtra(OTP_TYPE, loginOTPInfo)
+                                startActivity(intentOtp)
+                            }
+                        }
 
                     } else {
                         Toast.makeText(
@@ -139,6 +170,8 @@ class LoginActivity : AppCompatActivity() {      //, View.OnClickListener {
                 }
             }
             binding.userMobile.setText("")
+
+
 
 
             binding.signUpBtn.setOnClickListener {

@@ -1,16 +1,46 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-parcelize'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'kotlin-kapt'
+}
+
+afterEvaluate {
+
+    googleFlavor {
+        apply plugin: 'com.google.firebase.crashlytics'
+    }
+
+    huaweiFlavor {
+        apply plugin: 'com.huawei.agconnect'
+    }
+
+}
+
+//function check if it is google flavor
+def googleFlavor(closure) {
+    if (getGradle().getStartParameter().getTaskRequests().toString().contains("Google"))
+        closure()
+}
+
+//function check if it is huawei flavor
+def huaweiFlavor(closure) {
+    if (getGradle().getStartParameter().getTaskRequests().toString().contains("Huawei"))
+        closure()
 }
 
 android {
-    namespace 'com.example.safevalet'
+//    signingConfigs {
+//        release {
+//            storeFile file('/Users/hashimblueray/AndroidStudioProjects/ACI/ACI-GOV.jks')
+//            storePassword 'Abb@102030'
+//            keyPassword 'Abb@102030'
+//            keyAlias 'key0'
+//        }
+//    }
     compileSdk 32
 
     defaultConfig {
-        multiDexEnabled = true
 
         applicationId "com.example.safevalet"
         minSdk 21
@@ -19,13 +49,23 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled = true
+
+
     }
 
     buildTypes {
+
         release {
-            minifyEnabled false
+            minifyEnabled true
+//            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -35,12 +75,42 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
     buildFeatures {
         viewBinding true
+        dataBinding true
+    }
+    bundle {
+        language {
+            // Specifies that the app bundle should not support
+            // configuration APKs for language resources. These
+            // resources are instead packaged with each base and
+            // dynamic feature APK.
+            enableSplit = false
+        }
+    }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+    flavorDimensions 'provider'
+    productFlavors {
+        google {
+            dimension 'provider'
+//            signingConfig signingConfigs.release
+            ext.useGoogleServices = true
+        }
+        huawei {
+            dimension 'provider'
+            applicationIdSuffix '.huawei'
+            versionCode 1
+            versionName '1.0'
+//            signingConfig signingConfigs.release
+
+        }
     }
 
+    namespace 'com.example.safevalet'
 }
+
 
 dependencies {
 
@@ -72,6 +142,9 @@ dependencies {
 
     implementation "androidx.fragment:fragment:1.2.5"
 
+    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
+
+    implementation 'io.insert-koin:koin-android:3.2.0'
 
     def lifecycle_version = '2.4.1'
 
@@ -115,6 +188,26 @@ dependencies {
 
     // gif image
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
+
+    googleImplementation('com.google.firebase:firebase-analytics:21.1.0')
+    googleImplementation('com.google.firebase:firebase-crashlytics-ktx:18.2.12')
+    googleImplementation('com.google.firebase:firebase-analytics-ktx:21.1.0')
+    googleImplementation('com.google.firebase:firebase-messaging:23.0.7')
+    googleImplementation('com.google.android.gms:play-services-auth:20.2.0')
+    googleImplementation('com.facebook.android:facebook-login:14.1.0')
+    googleImplementation('com.onesignal:OneSignal:4.8.2')
+
+    //huawei dependencies
+    huaweiImplementation('com.huawei.agconnect:agconnect-core:1.7.0.300')
+    huaweiImplementation('com.huawei.agconnect:agconnect-crash:1.7.0.300')
+    huaweiImplementation('com.huawei.hms:hianalytics:6.5.0.300')
+    huaweiImplementation('com.huawei.hms:push:6.5.0.300')
+    huaweiImplementation('com.onesignal:OneSignal:4.8.2') {
+        exclude group: 'com.google.android.gms'
+        exclude group: 'com.google.firebase'
+    }
+
+
 
 
 

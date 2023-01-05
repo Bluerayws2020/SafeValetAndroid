@@ -8,10 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#2596be</color>
+    <color name="red_500">#881013</color>
+    <color name="edit_text_gray">#f8f8f7</color>
+    <color name="button_border_color">#DDDAD5</color>
 
     <color name="colorPrimary">#C5C5C5</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#83413C</color>
+    <color name="edit_text_border">#ddd7d4</color>
 
     <color name="text_color">#1E4175</color>
     <color name="background_color">#ecf0f3</color>

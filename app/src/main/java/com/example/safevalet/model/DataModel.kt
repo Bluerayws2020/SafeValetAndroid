@@ -38,13 +38,13 @@ data class UserLoginModel(
     @SerializedName("data") val data: LoginModel
 )
 
-
+@Parcelize
 data class LoginModel(
     @SerializedName("uid") val uid: String,
     @SerializedName("type") val type: String,
     @SerializedName("phone") val phone: String,
 //    @SerializedName("car") val car: CarLoginModel
-)
+) : Parcelable
 
 data class CarLoginModel(
     @SerializedName("title") val title: String,
@@ -55,6 +55,8 @@ data class CarLoginModel(
     @SerializedName("year") val year: String
 
 )
+
+
 
 
 data class CarRegisterModel(
@@ -69,6 +71,43 @@ data class CarModel(
     @SerializedName("carNumber") val carNumber: String
 
 )
+
+data class BaseArrayModel<T>(
+
+    @SerializedName("status") val status: Int,
+    @SerializedName("message") val message: String?,
+    @SerializedName("data") val data: List<T>
+)
+data class UIDData(
+
+    @SerializedName("uid") val uid: Int
+)
+
+sealed class OTPInfo : Parcelable {
+    abstract var phoneNumber: String
+    abstract val otpType: Int
+
+    @Parcelize
+    data class LoginOTP(
+        val loginData: LoginModel,
+        val userPassword: String,
+        val isRemembered: Boolean,
+        override var phoneNumber: String,
+        override val otpType: Int,
+    ) : OTPInfo()
+
+    @Parcelize
+    data class SignUpOTP(
+        override var phoneNumber: String,
+        override val otpType: Int,
+    ) : OTPInfo()
+
+    @Parcelize
+    data class ForgetPassOTP(
+        override var phoneNumber: String,
+        override val otpType: Int,
+    ) : OTPInfo()
+}
 
 @Parcelize
 data class MyCarsDataModel(

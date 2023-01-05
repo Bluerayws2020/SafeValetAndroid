@@ -64,6 +64,26 @@ interface ApiServices {
 
 
     @Multipart
+    @POST("checkOtpCode")
+    suspend fun checkOTPCode(
+        @Part("phone") phoneNumber: RequestBody,
+        @Part("otp") otpCode: RequestBody,
+        @Part("type") type: RequestBody,
+        @Part("lang") language: RequestBody,
+    ): BaseArrayModel<UIDData>
+
+    @Multipart
+    @POST("resendOtpCode")
+    suspend fun resendOTPCode(
+        @Part("phone") phoneNumber: RequestBody,
+        @Part("type") type: RequestBody,
+        @Part("lang") language: RequestBody,
+    ): MessageModel
+
+
+
+
+    @Multipart
     @POST("updateUser")
     suspend fun updateUserInfo(
         @Part("lang") lang: RequestBody,

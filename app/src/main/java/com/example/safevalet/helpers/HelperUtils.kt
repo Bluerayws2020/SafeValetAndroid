@@ -3,12 +3,16 @@ package com.example.safevalet.helpers
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.safevalet.model.LoginModel
 
 
 object HelperUtils {
@@ -24,7 +28,6 @@ object HelperUtils {
     const val PHONE_PROVIDER = "phoneRegister"
     const val CONTACT_US_URL = "front_end/contact_us"
     const val ABOUT_US_URL = "front_end/aboutUs"
-
     fun getLang(mContext: Context?): String {
         val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         return sharedPreferences?.getString("lang", "en")!!
@@ -74,4 +77,10 @@ object HelperUtils {
     @SuppressLint("HardwareIds")
     fun getAndroidID(mContext: Context?): String =
         Settings.Secure.getString(mContext?.contentResolver, Settings.Secure.ANDROID_ID)
+
+    fun <T> MutableLiveData<T>.asLiveData(): LiveData<T> {
+        return this
+    }
+
+
 }
